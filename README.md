@@ -1,4 +1,4 @@
-# AV BY OG ✖️🦠✖️
+# AV BY OG 🦠
 ### The Database 📋: [DB](https://www.dropbox.com/scl/fo/oc4jdamrbko5fsenxumr3/h?rlkey=w852guzqbsl7uids5w2iae1vv&dl=0)
 
 
