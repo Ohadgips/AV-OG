@@ -40,8 +40,8 @@ dllDf.info()
 print("Column Names:")
 print(dllDf.columns[-1])
 #prediction
-X = dllDf.iloc[:, :-1].values
-y = dllDf.iloc[:, -1].info
+features = dllDf.iloc[:, :-1].values
+target = dllDf.iloc[:, -1].info
 
 print(y)
 """
@@ -49,6 +49,8 @@ label_encoder = LabelEncoder()
 x_categorical = dllDf.select_dtypes(include=['object']).apply(label_encoder.fit_transform)
 x_numerical = dllDf.select_dtypes(exclude=['object']).values
 x = pd.concat([pd.DataFrame(x_numerical), x_categorical], axis=1).values
+
+
 """
 """
 #decide the prediction
