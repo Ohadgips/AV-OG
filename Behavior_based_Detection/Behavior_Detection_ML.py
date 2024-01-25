@@ -16,15 +16,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 
-"""
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
-from sklearn.metrics import accuracy_score, classification_report
-"""
-
-
 
 # data preprocessing
 def preprocess_data(filename):
@@ -40,19 +31,28 @@ dllDf.info()
 print("Column Names:")
 print(dllDf.columns[-1])
 #prediction
-features = dllDf.iloc[:, :-1].values
-target = dllDf.iloc[:, -1].info
+features = pd.get_dummies(dllDf.iloc[:, :-1])
+target = dllDf.iloc[:, -1]
 
-print(y)
+print(features)
+np.array(target)
+features_lst = list(features.columns)
+print(features_lst)
+features = np.array(features)
+
+
+train_features,test_features, train_target, test_target = train_test_split(features,target,test_size = 0.24, random_state = 42)
+print('train_features shape: ',train_features.shape)
+print('test_features shape: ',test_features.shape)
+print('train_target shape: ',train_target.shape)
+print('test_target shape: ',test_target.shape)
+
 """
-label_encoder = LabelEncoder()
+
 x_categorical = dllDf.select_dtypes(include=['object']).apply(label_encoder.fit_transform)
 x_numerical = dllDf.select_dtypes(exclude=['object']).values
 x = pd.concat([pd.DataFrame(x_numerical), x_categorical], axis=1).values
 
-
-"""
-"""
 #decide the prediction
 y = dllDS['kernel32.dll']
 x = dllDS.drop(['kernel32.dll',"SHA256"], axis=1)
