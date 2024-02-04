@@ -1,4 +1,5 @@
 import os,requests
+import json
 
 # use sandbox to analyze file behavior:
 API_URL = "https://localhost:8090/cuckoo/api"
@@ -32,4 +33,11 @@ if __name__ == "__main__":
 
     # Get result
     results = get_result(task_id)
+    json_file = open('analysis_data.json', 'w')
+    json.dump(results, json_file)
     print("results: ", results)
+
+    # For Python 2.7
+    import io, json
+    with io.open('data.txt', 'w', encoding='utf-8') as f:
+        f.write(json.dumps(results, ensure_ascii=False))
