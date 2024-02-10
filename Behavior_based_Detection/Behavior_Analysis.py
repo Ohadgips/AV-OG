@@ -2,23 +2,38 @@ import os,requests
 import json
 
 # use sandbox to analyze file behavior:
-API_URL = "https://localhost:8090/cuckoo/api"
+API_URL = "http://your_cape_server_ip:8000"
 
 # choose a file to test
-def choose_file(file_path):
-    files = {"file":open(file_path,'rb')}
-
-    response = requests.post(f"{API_URL}/tasks/create/file",files=files)
+def file_for_analysis(file_path):
     
-    task_id = response.json.get('task_id')
+    headers = {"Content-Type": "application/json"}
+   
+    data = {
+    "file": open(file_path, "rb").read().encode("base64"),
+        "config": {
+            "analysis_target": "file",
+            "target": "http",
+            "advanced": {}
+            }
+    }
+    
+    # Submit file for analysis
+    response = requests.post(f"{API_URL}/analyze", headers=headers, data=json.dumps(data))
 
-    return task_id
+    analysis_id = response.json().get("id")
+
+    return analysis_id
+
 
 # Get cuckoo sandbox analysis result
-def get_result(task_id):
+def get_result(analysis_id):
 
-    response = requests.get(f"{API_URL}/tasks/report/{task_id}")
-    return response.json()
+    response = requests.get(f"{API_URL}/analysis/{analysis_id}/json")
+    
+    analysis_results = response.json()
+    
+    return analysis_results.json()
 
 
 if __name__ == "__main__":
@@ -27,17 +42,12 @@ if __name__ == "__main__":
     file_path = ""
 
     # Start analysis
-    task_id = choose_file(file_path)
-    print ("ID: ",task_id)
+    analysis_id = file_for_analysis(file_path)
+    print ("ID: ",analysis_id)
 
 
     # Get result
-    results = get_result(task_id)
+    results = get_result(analysis_id)
+    print("Analysis Results:", results)
     json_file = open('analysis_data.json', 'w')
     json.dump(results, json_file)
-    print("results: ", results)
-
-    # For Python 2.7
-    import io, json
-    with io.open('data.txt', 'w', encoding='utf-8') as f:
-        f.write(json.dumps(results, ensure_ascii=False))
