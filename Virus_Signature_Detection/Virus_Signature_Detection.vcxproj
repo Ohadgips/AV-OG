@@ -131,7 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Virus_Signature_Detection.cpp" />
     <ClCompile Include="VirusSignature.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Virus_Signature_Detection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VirusSignature.cpp">
