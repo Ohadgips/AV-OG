@@ -1,0 +1,6 @@
+
+Windows Malware Detection/Datasets/PE_Section.csv
+Windows Malware Detection/Datasets/PE_Header.csv
+Windows Malware Detection/Datasets/Filtered_API_Functions.csv
+Windows Malware Detection/Datasets/DLLs_Imported.csv
+Windows Malware Detection/Datasets/API_Functions.csv
