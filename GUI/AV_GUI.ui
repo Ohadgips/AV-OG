@@ -15,16 +15,52 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QWidget" name="upperMenu" native="true">
+      <property name="styleSheet">
+       <string notr="true">background: rgb(97, 151, 132)</string>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QWidget" name="logoPlace" native="true">
+         <property name="styleSheet">
+          <string notr="true">background: rgb(97, 151, 132)</string>
+         </property>
          <widget class="QLabel" name="logo">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>0</y>
+            <x>10</x>
+            <y>10</y>
             <width>111</width>
             <height>51</height>
            </rect>
@@ -45,8 +81,8 @@
          <widget class="QPushButton" name="exitButton">
           <property name="geometry">
            <rect>
-            <x>720</x>
-            <y>0</y>
+            <x>750</x>
+            <y>10</y>
             <width>41</width>
             <height>41</height>
            </rect>
@@ -70,7 +106,7 @@ background:rgb(0, 83, 54)
           </property>
           <property name="icon">
            <iconset resource="AV_Icons.qrc">
-            <normaloff>:/icons/feather/log-out.svg</normaloff>:/icons/feather/log-out.svg</iconset>
+            <normaloff>:/AV ICO/AV_Icons/power-off-619784.ico</normaloff>:/AV ICO/AV_Icons/power-off-619784.ico</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -83,10 +119,13 @@ background:rgb(0, 83, 54)
        </item>
        <item>
         <widget class="QWidget" name="buttonsPlace" native="true">
+         <property name="styleSheet">
+          <string notr="true">background: rgb(97, 151, 132)</string>
+         </property>
          <widget class="QPushButton" name="manualScansButton">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>170</x>
             <y>80</y>
             <width>131</width>
             <height>41</height>
@@ -99,26 +138,26 @@ background:rgb(0, 83, 54)
            <enum>Qt::LeftToRight</enum>
           </property>
           <property name="autoFillBackground">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="text">
-           <string>Manual Scans</string>
+           <string>Scans</string>
           </property>
           <property name="icon">
            <iconset resource="AV_Icons.qrc">
-            <normaloff>:/icons/feather/folder.svg</normaloff>:/icons/feather/folder.svg</iconset>
+            <normaloff>:/AV ICO/AV_Icons/scan-virus.ico</normaloff>:/AV ICO/AV_Icons/scan-virus.ico</iconset>
           </property>
           <property name="iconSize">
            <size>
-            <width>20</width>
-            <height>20</height>
+            <width>24</width>
+            <height>24</height>
            </size>
           </property>
          </widget>
          <widget class="QPushButton" name="scansResultsButton">
           <property name="geometry">
            <rect>
-            <x>290</x>
+            <x>320</x>
             <y>80</y>
             <width>131</width>
             <height>41</height>
@@ -129,19 +168,19 @@ background:rgb(0, 83, 54)
           </property>
           <property name="icon">
            <iconset resource="AV_Icons.qrc">
-            <normaloff>:/icons/feather/file-text.svg</normaloff>:/icons/feather/file-text.svg</iconset>
+            <normaloff>:/AV ICO/AV_Icons/data.ico</normaloff>:/AV ICO/AV_Icons/data.ico</iconset>
           </property>
           <property name="iconSize">
            <size>
-            <width>20</width>
-            <height>20</height>
+            <width>24</width>
+            <height>24</height>
            </size>
           </property>
          </widget>
          <widget class="QPushButton" name="SettingsButton">
           <property name="geometry">
            <rect>
-            <x>540</x>
+            <x>470</x>
             <y>80</y>
             <width>131</width>
             <height>41</height>
@@ -152,12 +191,12 @@ background:rgb(0, 83, 54)
           </property>
           <property name="icon">
            <iconset resource="AV_Icons.qrc">
-            <normaloff>:/icons/feather/settings.svg</normaloff>:/icons/feather/settings.svg</iconset>
+            <normaloff>:/AV ICO/AV_Icons/settings.ico</normaloff>:/AV ICO/AV_Icons/settings.ico</iconset>
           </property>
           <property name="iconSize">
            <size>
-            <width>20</width>
-            <height>20</height>
+            <width>24</width>
+            <height>24</height>
            </size>
           </property>
          </widget>
@@ -167,11 +206,13 @@ background:rgb(0, 83, 54)
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="mainScreen" native="true"/>
+     <widget class="QWidget" name="mainScreen" native="true">
+      <property name="styleSheet">
+       <string notr="true">background:rgb(208, 222, 216)</string>
+      </property>
+     </widget>
     </item>
    </layout>
-   <zorder>mainScreen</zorder>
-   <zorder>upperMenu</zorder>
   </widget>
  </widget>
  <resources>
