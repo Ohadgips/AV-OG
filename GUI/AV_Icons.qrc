@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="AV ICO">
+    <file>AV_Icons/info.ico</file>
+    <file>AV_Icons/help.ico</file>
+    <file>AV_Icons/power-off-003e29.ico</file>
+    <file>AV_Icons/question.ico</file>
+    <file>AV_Icons/settings.ico</file>
+    <file>AV_Icons/info.ico</file>
     <file>AV_Icons/data.ico</file>
     <file>AV_Icons/power-off-619784.ico</file>
     <file>AV_Icons/scan-virus.ico</file>
