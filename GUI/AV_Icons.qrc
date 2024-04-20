@@ -7,8 +7,8 @@
     <file>AV_Icons/settings.ico</file>
     <file>AV_Icons/info.ico</file>
     <file>AV_Icons/data.ico</file>
-    <file>AV_Icons/power-off-619784.ico</file>
     <file>AV_Icons/scan-virus.ico</file>
+    <file>AV_Icons/power.ico</file>
     <file>AV_Icons/settings.ico</file>
   </qresource>
   <qresource prefix="AV SVG">

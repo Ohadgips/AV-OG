@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>797</width>
-    <height>566</height>
+    <width>855</width>
+    <height>675</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,6 +17,7 @@
    <string notr="true">*{
 border: none;
 background:none;
+background-color: rgb(255, 255, 255);
 padding: 0;
 margin: 0;
 }</string>
@@ -41,10 +42,10 @@ margin: 0;
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item alignment="Qt::AlignTop">
+    <item>
      <widget class="QWidget" name="upperMenu" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -52,7 +53,7 @@ margin: 0;
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>109</height>
+        <height>0</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -76,6 +77,24 @@ margin: 0;
        </property>
        <item alignment="Qt::AlignTop">
         <widget class="QWidget" name="SubUpperMenu" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>855</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>855</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">background: rgb(97, 151, 132)</string>
          </property>
@@ -166,12 +185,20 @@ margin: 0;
                 <string>Info</string>
                </property>
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;
-background-color: transparent;</string>
+                <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background: none;
+	background-color: transparent;
+	border-radius: 14px;
+	border-style: outset
+	}
+
+QPushButton:hover {
+	background:rgb(82, 130, 101);	
+	}</string>
                </property>
                <property name="text">
                 <string/>
@@ -219,12 +246,20 @@ background-color: transparent;</string>
                 <string>Help</string>
                </property>
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;
-background-color: transparent;</string>
+                <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background: none;
+	background-color: transparent;
+	border-radius: 14px;
+	border-style: outset
+	}
+
+QPushButton:hover {
+	background:rgb(82, 130, 101);	
+	}</string>
                </property>
                <property name="text">
                 <string/>
@@ -271,17 +306,33 @@ background-color: transparent;</string>
                <property name="toolTip">
                 <string>Close Application</string>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background: none;
+	background-color: transparent;
+	border-radius: 14px;
+	border-style: outset
+	}
+
+QPushButton:hover {
+	background:rgb(82, 130, 101);	
+	}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
                 <iconset resource="AV_Icons.qrc">
-                 <normaloff>:/AV ICO/AV_Icons/power-off-003e29.ico</normaloff>:/AV ICO/AV_Icons/power-off-003e29.ico</iconset>
+                 <normaloff>:/AV ICO/AV_Icons/power.ico</normaloff>:/AV ICO/AV_Icons/power.ico</iconset>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>24</width>
-                 <height>24</height>
+                 <width>27</width>
+                 <height>27</height>
                 </size>
                </property>
               </widget>
@@ -299,6 +350,9 @@ background-color: transparent;</string>
               <number>0</number>
              </property>
              <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
               <number>0</number>
              </property>
              <property name="rightMargin">
@@ -334,14 +388,19 @@ background-color: transparent;</string>
                 <bool>false</bool>
                </property>
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;
-background-color: transparent;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px</string>
+                <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background-color: rgb(97, 151, 132);	
+    border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	}
+
+QPushButton:hover {
+	background:rgb(82, 130, 101);	
+	}</string>
                </property>
                <property name="text">
                 <string>Scans</string>
@@ -383,14 +442,19 @@ border-top-right-radius: 10px</string>
                 <string>Results</string>
                </property>
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;
-background-color:transparent;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;</string>
+                <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background-color: rgb(97, 151, 132);	
+    border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	}
+
+QPushButton:hover {
+	background:rgb(82, 130, 101);	
+	}</string>
                </property>
                <property name="text">
                 <string> Results</string>
@@ -432,14 +496,19 @@ border-top-right-radius: 10px;</string>
                 <string>Settings</string>
                </property>
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;
-background-color: transparent;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px</string>
+                <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background-color: rgb(97, 151, 132);	
+    border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	}
+
+QPushButton:hover {
+	background:rgb(82, 130, 101);	
+	}</string>
                </property>
                <property name="text">
                 <string>Settings</string>
@@ -478,8 +547,14 @@ border-top-right-radius: 10px</string>
       </property>
       <property name="minimumSize">
        <size>
-        <width>0</width>
+        <width>855</width>
         <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>855</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -501,23 +576,121 @@ border-top-right-radius: 10px</string>
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
+       <item alignment="Qt::AlignTop">
         <widget class="QStackedWidget" name="stackedWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>855</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>855</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="resultsPage">
-          <widget class="QLabel" name="filePath_2">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>10</y>
-             <width>351</width>
-             <height>51</height>
-            </rect>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>855</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>855</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background: none;
+background-color: transparent;</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Alata&quot;;
+           <property name="topMargin">
+            <number>9</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="horizontalSpacing">
+            <number>0</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>9</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QWidget" name="resultsTitles" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>855</width>
+               <height>53</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>855</width>
+               <height>53</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background: none;
+background-color: transparent;</string>
+             </property>
+             <layout class="QHBoxLayout" name="titles">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="fileNameLabel">
+                <property name="minimumSize">
+                 <size>
+                  <width>351</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>351</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
 color: rgb(0, 62, 41);
@@ -527,22 +700,28 @@ border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
-           </property>
-           <property name="text">
-            <string>File Name</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="filePath_3">
-           <property name="geometry">
-            <rect>
-             <x>370</x>
-             <y>10</y>
-             <width>121</width>
-             <height>51</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Alata&quot;;
+                </property>
+                <property name="text">
+                 <string>File Name</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="sizeLabel">
+                <property name="minimumSize">
+                 <size>
+                  <width>121</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>121</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
 color: rgb(0, 62, 41);
@@ -552,22 +731,28 @@ border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
-           </property>
-           <property name="text">
-            <string> Size (MB)</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="filePath_4">
-           <property name="geometry">
-            <rect>
-             <x>500</x>
-             <y>10</y>
-             <width>291</width>
-             <height>51</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Alata&quot;;
+                </property>
+                <property name="text">
+                 <string> Size (MB)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="StatusLabel">
+                <property name="minimumSize">
+                 <size>
+                  <width>351</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>351</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
 color: rgb(0, 62, 41);
@@ -577,73 +762,152 @@ border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
-           </property>
-           <property name="text">
-            <string>Status</string>
-           </property>
-          </widget>
+                </property>
+                <property name="text">
+                 <string>Status</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0" rowspan="2">
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="minimumSize">
+              <size>
+               <width>855</width>
+               <height>495</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>855</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">gridline-color: rgb(97, 151, 132);</string>
+             </property>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOn</enum>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <widget class="QWidget" name="filesResults">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>838</width>
+                <height>495</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>865</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background: none;
+background-color: transparent;</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="horizontalSpacing">
+                <number>0</number>
+               </property>
+               <property name="verticalSpacing">
+                <number>9</number>
+               </property>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="scansPage">
-          <widget class="QLabel" name="filePath">
-           <property name="geometry">
-            <rect>
-             <x>190</x>
-             <y>130</y>
-             <width>361</width>
-             <height>51</height>
-            </rect>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Alata&quot;;
-padding: 2px 5px;
-margin: 0;
-background: none;
-background-color: rgb(208, 222, 216);
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px</string>
+           <property name="topMargin">
+            <number>0</number>
            </property>
-           <property name="text">
-            <string>file path...</string>
+           <property name="rightMargin">
+            <number>0</number>
            </property>
-          </widget>
-          <widget class="QPushButton" name="scanBtn">
-           <property name="geometry">
-            <rect>
-             <x>320</x>
-             <y>200</y>
-             <width>109</width>
-             <height>40</height>
-            </rect>
+           <property name="bottomMargin">
+            <number>0</number>
            </property>
-           <property name="minimumSize">
-            <size>
-             <width>109</width>
-             <height>40</height>
-            </size>
+           <property name="horizontalSpacing">
+            <number>0</number>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>109</width>
-             <height>40</height>
-            </size>
+           <property name="verticalSpacing">
+            <number>15</number>
            </property>
-           <property name="font">
-            <font>
-             <family>Alata</family>
-             <pointsize>18</pointsize>
-             <weight>50</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-             <stylestrategy>PreferDefault</stylestrategy>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string>Start Scan</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="scanBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>109</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>109</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Alata</family>
+                 <pointsize>16</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                 <stylestrategy>PreferDefault</stylestrategy>
+                </font>
+               </property>
+               <property name="toolTip">
+                <string>Start Scan</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 16pt &quot;Alata&quot;;
 color: rgb(0, 62, 41);
 padding: 2px 5px;
 margin: 0;
@@ -654,146 +918,254 @@ border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
-           </property>
-           <property name="text">
-            <string>Scan</string>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
+               </property>
+               <property name="text">
+                <string>Scan</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>275</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="filePath">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>51</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>51</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Alata&quot;;
+padding: 2px 5px;
+margin: 0;
+background: none;
+background-color: rgb(208, 222, 216);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px</string>
+             </property>
+             <property name="text">
+              <string>file path...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>275</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="2">
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="1">
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>214</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="0">
+            <spacer name="horizontalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="1">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>214</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="settingsPage">
-          <widget class="QLabel" name="label_3">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>171</width>
-             <height>51</height>
-            </rect>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <property name="leftMargin">
+            <number>9</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
+           <property name="topMargin">
+            <number>9</number>
+           </property>
+           <property name="rightMargin">
+            <number>9</number>
+           </property>
+           <property name="bottomMargin">
+            <number>9</number>
+           </property>
+           <property name="spacing">
+            <number>9</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QWidget" name="widget_3" native="true">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
-background: none;</string>
-           </property>
-           <property name="text">
-            <string>Settings</string>
-           </property>
-          </widget>
+color: rgb(0, 62, 41);
+background: none;
+background-color:rgb(208, 222, 216);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="helpPage">
-          <widget class="QLabel" name="label_4">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>441</width>
-             <height>51</height>
-            </rect>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <property name="leftMargin">
+            <number>9</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
+           <property name="topMargin">
+            <number>9</number>
+           </property>
+           <property name="rightMargin">
+            <number>9</number>
+           </property>
+           <property name="bottomMargin">
+            <number>9</number>
+           </property>
+           <property name="spacing">
+            <number>9</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QWidget" name="widget_2" native="true">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
-background: none;</string>
-           </property>
-           <property name="text">
-            <string>How To Use The Anti Virus</string>
-           </property>
-          </widget>
+color: rgb(0, 62, 41);
+background: none;
+background-color:rgb(208, 222, 216);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="infoPage">
-          <widget class="QLabel" name="label_5">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>761</width>
-             <height>61</height>
-            </rect>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <property name="leftMargin">
+            <number>9</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
+           <property name="topMargin">
+            <number>9</number>
+           </property>
+           <property name="rightMargin">
+            <number>9</number>
+           </property>
+           <property name="bottomMargin">
+            <number>9</number>
+           </property>
+           <property name="spacing">
+            <number>9</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QWidget" name="widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
-background: none;</string>
-           </property>
-           <property name="text">
-            <string>This is a anti virus the using 2 types of malware detection:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_6">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>50</y>
-             <width>761</width>
-             <height>61</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
 color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;</string>
-           </property>
-           <property name="text">
-            <string>- Virus Signature Detection </string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_7">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>100</y>
-             <width>761</width>
-             <height>61</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;</string>
-           </property>
-           <property name="text">
-            <string>- Windows Malware Detection</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_8">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>280</y>
-             <width>761</width>
-             <height>61</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 18pt &quot;Alata&quot;;
-color: rgb(0, 62, 41);
-padding: 2px 5px;
-margin: 0;
-background: none;</string>
-           </property>
-           <property name="text">
-            <string>The Project is wrriten in:</string>
-           </property>
-          </widget>
+background: none;
+background-color:rgb(208, 222, 216);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7"/>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
