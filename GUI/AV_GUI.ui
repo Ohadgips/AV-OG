@@ -204,7 +204,7 @@ QPushButton:hover {
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="AV_Icons.qrc">
+                <iconset>
                  <normaloff>:/AV ICO/AV_Icons/info.ico</normaloff>:/AV ICO/AV_Icons/info.ico</iconset>
                </property>
                <property name="iconSize">
@@ -265,7 +265,7 @@ QPushButton:hover {
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="AV_Icons.qrc">
+                <iconset>
                  <normaloff>:/AV ICO/AV_Icons/help.ico</normaloff>:/AV ICO/AV_Icons/help.ico</iconset>
                </property>
                <property name="iconSize">
@@ -326,7 +326,7 @@ QPushButton:hover {
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="AV_Icons.qrc">
+                <iconset>
                  <normaloff>:/AV ICO/AV_Icons/power.ico</normaloff>:/AV ICO/AV_Icons/power.ico</iconset>
                </property>
                <property name="iconSize">
@@ -406,7 +406,7 @@ QPushButton:hover {
                 <string>Scans</string>
                </property>
                <property name="icon">
-                <iconset resource="AV_Icons.qrc">
+                <iconset>
                  <normaloff>:/AV ICO/AV_Icons/scan-virus.ico</normaloff>:/AV ICO/AV_Icons/scan-virus.ico</iconset>
                </property>
                <property name="iconSize">
@@ -460,7 +460,7 @@ QPushButton:hover {
                 <string> Results</string>
                </property>
                <property name="icon">
-                <iconset resource="AV_Icons.qrc">
+                <iconset>
                  <normaloff>:/AV ICO/AV_Icons/data.ico</normaloff>:/AV ICO/AV_Icons/data.ico</iconset>
                </property>
                <property name="iconSize">
@@ -514,7 +514,7 @@ QPushButton:hover {
                 <string>Settings</string>
                </property>
                <property name="icon">
-                <iconset resource="AV_Icons.qrc">
+                <iconset>
                  <normaloff>:/AV ICO/AV_Icons/settings.ico</normaloff>:/AV ICO/AV_Icons/settings.ico</iconset>
                </property>
                <property name="iconSize">
@@ -597,7 +597,7 @@ QPushButton:hover {
           </size>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="resultsPage">
           <property name="sizePolicy">
