@@ -1,3 +1,0 @@
-﻿  VirusHandle.cpp
-C:\Users\USER\Documents\GitHub\AV_by_OG\Virus Treatment\ConsoleApplication1\VirusHandle.cpp(104): warning C4715: 'quarantineFile': not all control paths return a value
-  ConsoleApplication1.vcxproj -> C:\Users\USER\Documents\GitHub\AV_by_OG\Virus Treatment\ConsoleApplication1\x64\Debug\VirusHandle.exe
