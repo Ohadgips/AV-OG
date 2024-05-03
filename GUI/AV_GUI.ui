@@ -594,7 +594,7 @@ QPushButton:hover {
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -618,7 +618,7 @@ QPushButton:hover {
           <number>0</number>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="threatsPage">
           <property name="sizePolicy">
@@ -836,7 +836,7 @@ border-bottom-left-radius: 10px</string>
               <enum>QFrame::Plain</enum>
              </property>
              <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOn</enum>
+              <enum>Qt::ScrollBarAsNeeded</enum>
              </property>
              <property name="sizeAdjustPolicy">
               <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -852,7 +852,7 @@ border-bottom-left-radius: 10px</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>845</width>
+                <width>855</width>
                 <height>495</height>
                </rect>
               </property>
@@ -872,23 +872,8 @@ background-color: transparent;</string>
           </layout>
          </widget>
          <widget class="QWidget" name="scansPage">
-          <layout class="QGridLayout" name="gridLayout_8">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="1">
             <spacer name="verticalSpacer_3">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -902,90 +887,157 @@ background-color: transparent;</string>
             </spacer>
            </item>
            <item row="1" column="0">
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="0" column="0">
-              <spacer name="horizontalSpacer_8">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>224</width>
-                 <height>17</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="0" column="1" colspan="3">
-              <widget class="QLabel" name="filePath">
-               <property name="minimumSize">
-                <size>
-                 <width>400</width>
-                 <height>51</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>400</width>
-                 <height>51</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;Alata&quot;;
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>184</width>
+               <height>58</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="1">
+            <widget class="QWidget" name="filePathWidget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>465</width>
+               <height>63</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>465</width>
+               <height>63</height>
+              </size>
+             </property>
+             <layout class="QHBoxLayout" name="filePathLayout">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="filePath">
+                <property name="minimumSize">
+                 <size>
+                  <width>400</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>400</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 12pt &quot;Alata&quot;;
 padding: 2px 5px;
 margin: 0;
 background: none;
 background-color: rgb(208, 222, 216);
 border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
-               </property>
-               <property name="text">
-                <string>File Path...</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="4">
+                </property>
+                <property name="text">
+                 <string>File Path...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pathBtn">
+                <property name="minimumSize">
+                 <size>
+                  <width>51</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>51</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Choose Path...</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background: none;
+	background-color: rgb(97, 151, 132);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-style: outset
+	}
+
+QPushButton:hover {
+background:rgba(75, 117, 102, 220)
+	}</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="AV_Icons.qrc">
+                  <normaloff>:/AV ICO/AV_Icons/files.ico</normaloff>:/AV ICO/AV_Icons/files.ico</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>184</width>
+               <height>48</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <layout class="QHBoxLayout" name="ScanLayout">
+             <item>
               <spacer name="horizontalSpacer_9">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>225</width>
-                 <height>17</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="1" column="2">
-              <spacer name="verticalSpacer">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>18</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="2" column="0" colspan="2">
-              <spacer name="horizontalSpacer_10">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>338</width>
+                 <width>145</width>
                  <height>20</height>
                 </size>
                </property>
               </spacer>
              </item>
-             <item row="2" column="2">
+             <item>
               <widget class="QPushButton" name="scanBtn">
                <property name="minimumSize">
                 <size>
@@ -1022,9 +1074,9 @@ border-bottom-left-radius: 10px</string>
 	text-align: center middle;
 	background-color: rgb(97, 151, 132);
 	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
 }
 QPushButton:hover {
 background:rgba(75, 117, 102, 220)
@@ -1045,22 +1097,22 @@ background:rgba(75, 117, 102, 220)
                </property>
               </widget>
              </item>
-             <item row="2" column="3" colspan="2">
+             <item>
               <spacer name="horizontalSpacer_11">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>338</width>
-                 <height>20</height>
+                 <width>226</width>
+                 <height>58</height>
                 </size>
                </property>
               </spacer>
              </item>
             </layout>
            </item>
-           <item row="2" column="0">
+           <item row="3" column="1">
             <spacer name="verticalSpacer_2">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -1073,7 +1125,7 @@ background:rgba(75, 117, 102, 220)
              </property>
             </spacer>
            </item>
-           <item row="3" column="0">
+           <item row="4" column="0" colspan="3">
             <widget class="QWidget" name="scanInfo" native="true">
              <property name="minimumSize">
               <size>
@@ -1206,6 +1258,13 @@ border-bottom-left-radius: 10px</string>
             </widget>
            </item>
           </layout>
+          <zorder>filePathWidget</zorder>
+          <zorder>scanInfo</zorder>
+          <zorder></zorder>
+          <zorder>scanBtn</zorder>
+          <zorder>filePath</zorder>
+          <zorder>pathBtn</zorder>
+          <zorder>horizontalSpacer_11</zorder>
          </widget>
          <widget class="QWidget" name="settingsPage">
           <layout class="QGridLayout" name="gridLayout_4">
@@ -1262,10 +1321,8 @@ border-bottom-left-radius: 10px</string>
            <item row="0" column="0">
             <widget class="QWidget" name="widget_2" native="true">
              <property name="styleSheet">
-              <string notr="true">font: 12pt &quot;Alata&quot;;
-padding: 2px 5px;
+              <string notr="true">padding: 2px 5px;
 margin: 0;
-color: rgb(0, 62, 41);
 background: none;
 background-color:rgb(208, 222, 216);
 border-top-left-radius: 10px;
@@ -1273,6 +1330,176 @@ border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
              </property>
+             <widget class="QLabel" name="label_6">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>819</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>Alata</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+                <underline>true</underline>
+               </font>
+              </property>
+              <property name="contextMenuPolicy">
+               <enum>Qt::NoContextMenu</enum>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: transparent;	
+</string>
+              </property>
+              <property name="text">
+               <string>To Start A Scan</string>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_7">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>50</y>
+                <width>819</width>
+                <height>191</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>Alata</family>
+                <pointsize>12</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="contextMenuPolicy">
+               <enum>Qt::NoContextMenu</enum>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: transparent;	
+</string>
+              </property>
+              <property name="text">
+               <string>1. Press the scans button in the upper tab
+
+2. Choose the file / folder to scan by pressing the file button
+
+3. Press the scan button to start scan
+
+4. The result will be shown in the button of the window and the threats in the threats page</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::AutoText</enum>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_8">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>250</y>
+                <width>819</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>Alata</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+                <underline>true</underline>
+               </font>
+              </property>
+              <property name="contextMenuPolicy">
+               <enum>Qt::NoContextMenu</enum>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: transparent;	
+</string>
+              </property>
+              <property name="text">
+               <string>How To Handle Threats</string>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_9">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>300</y>
+                <width>819</width>
+                <height>141</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>Alata</family>
+                <pointsize>12</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="contextMenuPolicy">
+               <enum>Qt::NoContextMenu</enum>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: transparent;	
+</string>
+              </property>
+              <property name="text">
+               <string>1. To see all the possible threats press the threats button
+
+2. For each file you can see is path and status (in default the file get transfered to a quarantine folder)
+
+3. You can choose if you want to delete the file or allow it (you can't change your decision later)</string>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -1297,8 +1524,20 @@ border-bottom-left-radius: 10px</string>
            <property name="spacing">
             <number>9</number>
            </property>
-           <item row="0" column="0">
+           <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
             <widget class="QWidget" name="widget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>837</width>
+               <height>548</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>837</width>
+               <height>548</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">padding: 2px 5px;
 margin: 0;
@@ -1310,8 +1549,69 @@ border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_7">
-              <item row="0" column="0">
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="horizontalSpacer_6">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>278</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>281</width>
+                    <height>125</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>281</width>
+                    <height>125</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>AV_Icons/logo-no-background.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>278</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
                <widget class="QLabel" name="label">
                 <property name="font">
                  <font>
@@ -1329,26 +1629,119 @@ border-bottom-left-radius: 10px</string>
                  <enum>Qt::LeftToRight</enum>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: transparent;	
+</string>
                 </property>
                 <property name="text">
-                 <string>AV
+                 <string>
 Is An Anti-Virus That Use 2 Types Of Detections
 Virus Signature Detection
 &amp;
 Windows Malware Detection
 It Is Program In Two Languages
 Python &amp; C++
-
-
-By 
-Ohad Gips
 </string>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>32</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="minimumSize">
+                   <size>
+                    <width>81</width>
+                    <height>71</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>81</width>
+                    <height>71</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="AV_Icons.qrc">:/AV ICO/AV_Icons/file_type_python_icon_130221.ico</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="minimumSize">
+                   <size>
+                    <width>71</width>
+                    <height>71</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>71</width>
+                    <height>71</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="AV_Icons.qrc">:/AV ICO/AV_Icons/c_icon_132529.ico</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_12">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>483</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="font">
+                   <font>
+                    <family>Alata</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>By Ohad Gips 2024</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>

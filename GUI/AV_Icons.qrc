@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="AV ICO">
+    <file>AV_Icons/files.ico</file>
+    <file>AV_Icons/av-favicon-color.ico</file>
+    <file>AV_Icons/c_icon_132529.ico</file>
+    <file>AV_Icons/file_type_python_icon_130221.ico</file>
     <file>AV_Icons/info.ico</file>
     <file>AV_Icons/help.ico</file>
     <file>AV_Icons/power-off-003e29.ico</file>
@@ -10,15 +14,5 @@
     <file>AV_Icons/scan-virus.ico</file>
     <file>AV_Icons/power.ico</file>
     <file>AV_Icons/settings.ico</file>
-  </qresource>
-  <qresource prefix="AV SVG">
-    <file>AV_Svgs/data.svg</file>
-    <file>AV_Svgs/logo.svg</file>
-    <file>AV_Svgs/logo-no-background.svg</file>
-    <file>AV_Svgs/logo-white.svg</file>
-    <file>AV_Svgs/power-off-003e29.svg</file>
-    <file>AV_Svgs/power-off-619784.svg</file>
-    <file>AV_Svgs/scan-virus.svg</file>
-    <file>AV_Svgs/settings.svg</file>
   </qresource>
 </RCC>
