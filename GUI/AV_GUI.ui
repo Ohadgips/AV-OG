@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>AV_App</class>
+ <widget class="QMainWindow" name="AV_App">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>855</width>
+    <width>856</width>
     <height>675</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>855</width>
+    <width>856</width>
     <height>675</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>855</width>
+    <width>856</width>
     <height>675</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AV by OG</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>AV_Icons/av-favicon-color.ico</normaloff>AV_Icons/av-favicon-color.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">*{
@@ -33,6 +42,12 @@ background-color: rgb(255, 255, 255);
 padding: 0;
 margin: 0;
 }</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>48</width>
+    <height>48</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -231,6 +246,9 @@ QPushButton:hover {
                  <height>24</height>
                 </size>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
@@ -292,6 +310,9 @@ QPushButton:hover {
                  <height>24</height>
                 </size>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
@@ -352,6 +373,9 @@ QPushButton:hover {
                  <width>27</width>
                  <height>27</height>
                 </size>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -433,6 +457,9 @@ QPushButton:hover {
                  <height>24</height>
                 </size>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
@@ -487,6 +514,9 @@ QPushButton:hover {
                  <height>24</height>
                 </size>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
@@ -540,6 +570,9 @@ QPushButton:hover {
                  <width>24</width>
                  <height>24</height>
                 </size>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
                <property name="flat">
                 <bool>false</bool>
@@ -604,13 +637,13 @@ QPushButton:hover {
          </property>
          <property name="minimumSize">
           <size>
-           <width>855</width>
+           <width>856</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>855</width>
+           <width>856</width>
            <height>16777215</height>
           </size>
          </property>
@@ -618,7 +651,7 @@ QPushButton:hover {
           <number>0</number>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="threatsPage">
           <property name="sizePolicy">
@@ -666,13 +699,13 @@ background-color: transparent;</string>
             <widget class="QWidget" name="resultsTitles" native="true">
              <property name="minimumSize">
               <size>
-               <width>855</width>
+               <width>856</width>
                <height>53</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>855</width>
+               <width>856</width>
                <height>53</height>
               </size>
              </property>
@@ -792,19 +825,34 @@ border-bottom-left-radius: 10px</string>
              </layout>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="1" column="0" alignment="Qt::AlignTop">
             <widget class="QScrollArea" name="scrollArea">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
-               <width>855</width>
+               <width>856</width>
                <height>495</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>855</width>
+               <width>856</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::NoContextMenu</enum>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
              </property>
              <property name="styleSheet">
               <string notr="true">QScrollBar:vertical {
@@ -842,7 +890,7 @@ border-bottom-left-radius: 10px</string>
               <enum>QAbstractScrollArea::AdjustToContents</enum>
              </property>
              <property name="widgetResizable">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="alignment">
               <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -852,7 +900,7 @@ border-bottom-left-radius: 10px</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>855</width>
+                <width>856</width>
                 <height>495</height>
                </rect>
               </property>
@@ -873,6 +921,21 @@ background-color: transparent;</string>
          </widget>
          <widget class="QWidget" name="scansPage">
           <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item row="0" column="1">
             <spacer name="verticalSpacer_3">
              <property name="orientation">
@@ -1004,6 +1067,9 @@ background:rgba(75, 117, 102, 220)
                   <height>24</height>
                  </size>
                 </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1092,6 +1158,9 @@ background:rgba(75, 117, 102, 220)
                  <height>0</height>
                 </size>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
                <property name="flat">
                 <bool>false</bool>
                </property>
@@ -1129,13 +1198,13 @@ background:rgba(75, 117, 102, 220)
             <widget class="QWidget" name="scanInfo" native="true">
              <property name="minimumSize">
               <size>
-               <width>851</width>
+               <width>856</width>
                <height>201</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>851</width>
+               <width>856</width>
                <height>201</height>
               </size>
              </property>
@@ -1145,9 +1214,9 @@ background:rgba(75, 117, 102, 220)
              <widget class="QLabel" name="scanTitle">
               <property name="geometry">
                <rect>
-                <x>10</x>
+                <x>11</x>
                 <y>5</y>
-                <width>831</width>
+                <width>835</width>
                 <height>61</height>
                </rect>
               </property>
@@ -1187,8 +1256,8 @@ border-bottom-left-radius: 10px</string>
               <property name="geometry">
                <rect>
                 <x>10</x>
-                <y>80</y>
-                <width>831</width>
+                <y>75</y>
+                <width>835</width>
                 <height>51</height>
                </rect>
               </property>
@@ -1197,9 +1266,9 @@ border-bottom-left-radius: 10px</string>
 padding: 2px 5px;
 margin: 0;
 background: none;
-background-color: rgb(208, 222, 216);
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
+background-color: rgb(208, 222, 216);
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px</string>
               </property>
@@ -1211,8 +1280,8 @@ border-bottom-left-radius: 10px</string>
               <property name="geometry">
                <rect>
                 <x>10</x>
-                <y>140</y>
-                <width>411</width>
+                <y>135</y>
+                <width>413</width>
                 <height>51</height>
                </rect>
               </property>
@@ -1234,9 +1303,9 @@ border-bottom-left-radius: 10px</string>
              <widget class="QLabel" name="numScanned">
               <property name="geometry">
                <rect>
-                <x>430</x>
-                <y>140</y>
-                <width>411</width>
+                <x>432</x>
+                <y>135</y>
+                <width>413</width>
                 <height>51</height>
                </rect>
               </property>
@@ -1260,11 +1329,7 @@ border-bottom-left-radius: 10px</string>
           </layout>
           <zorder>filePathWidget</zorder>
           <zorder>scanInfo</zorder>
-          <zorder></zorder>
-          <zorder>scanBtn</zorder>
-          <zorder>filePath</zorder>
-          <zorder>pathBtn</zorder>
-          <zorder>horizontalSpacer_11</zorder>
+          <zorder>verticalSpacer_3</zorder>
          </widget>
          <widget class="QWidget" name="settingsPage">
           <layout class="QGridLayout" name="gridLayout_4">
@@ -1759,5 +1824,22 @@ Python &amp; C++
  <resources>
   <include location="AV_Icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>exitBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>AV_App</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>837</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>990</x>
+     <y>236</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
