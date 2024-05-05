@@ -1,7 +1,19 @@
 from AV_GUI import Ui_AV_App
 from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget
-import sys
+from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileDialog
+import sys,os
+
+
+def get_default_download_folder():
+    # Get the user's home directory
+    home_dir = os.path.expanduser("~")
+
+    # Determine the default download directory based on the platform
+   
+    if os.name == 'nt':  # Windows
+        return os.path.join(home_dir, 'Downloads')
+    else:
+        return home_dir
 
 class AV_Application(QMainWindow):
     global ui
@@ -13,7 +25,17 @@ class AV_Application(QMainWindow):
         self.ui.setupUi(self) 
         self.on_theatsBtn_clicked()
 
+    def open_file_dialog(self):
+        print("open_file_dialog")
+        path, ok = QFileDialog.getOpenFileName(self,"Select File ",get_default_download_folder(),"All Files (*)")
+        dialog = QFileDialog()
+        self.ui.filePath.setText(path)
 
+    def open_folder_dialog(self):
+        print("open_file_dialog")
+        path = QFileDialog.getExistingDirectory(self,"Select A File ", get_default_download_folder(),QFileDialog.ShowDirsOnly)
+        dialog = QFileDialog()
+        self.ui.filePath.setText(path)    
 
     def color_all_button_back(self):
         default = """QPushButton{\n\
@@ -66,7 +88,14 @@ class AV_Application(QMainWindow):
     def on_helpBtn_clicked(self):
         self.ui.stackedWidget.setCurrentIndex(3)     
 
+    def on_filePathBtn_toggled(self):
+        self.open_file_dialog()   
 
+    def on_folderPathBtn_toggled(self):
+        self.open_folder_dialog()           
+
+    def on_scanBtn_toggled(self):
+        pass
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

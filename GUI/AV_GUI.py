@@ -404,16 +404,14 @@ class Ui_AV_App(object):
         self.scansPage = QtWidgets.QWidget()
         self.scansPage.setObjectName("scansPage")
         self.gridLayout = QtWidgets.QGridLayout(self.scansPage)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem5 = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
         spacerItem6 = QtWidgets.QSpacerItem(184, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem6, 1, 0, 1, 1)
         self.filePathWidget = QtWidgets.QWidget(self.scansPage)
-        self.filePathWidget.setMinimumSize(QtCore.QSize(465, 63))
-        self.filePathWidget.setMaximumSize(QtCore.QSize(465, 63))
+        self.filePathWidget.setMinimumSize(QtCore.QSize(521, 63))
+        self.filePathWidget.setMaximumSize(QtCore.QSize(521, 4000))
         self.filePathWidget.setObjectName("filePathWidget")
         self.filePathLayout = QtWidgets.QHBoxLayout(self.filePathWidget)
         self.filePathLayout.setContentsMargins(0, 0, 0, 0)
@@ -431,10 +429,34 @@ class Ui_AV_App(object):
 "border-bottom-left-radius: 10px")
         self.filePath.setObjectName("filePath")
         self.filePathLayout.addWidget(self.filePath)
-        self.pathBtn = QtWidgets.QPushButton(self.filePathWidget)
-        self.pathBtn.setMinimumSize(QtCore.QSize(51, 51))
-        self.pathBtn.setMaximumSize(QtCore.QSize(51, 51))
-        self.pathBtn.setStyleSheet("QPushButton{\n"
+        self.filePathBtn = QtWidgets.QPushButton(self.filePathWidget)
+        self.filePathBtn.setMinimumSize(QtCore.QSize(51, 51))
+        self.filePathBtn.setMaximumSize(QtCore.QSize(51, 51))
+        self.filePathBtn.setStyleSheet("QPushButton{\n"
+"    font: 12pt \"Alata\";\n"
+"    color: rgb(0, 62, 41);\n"
+"    padding: 2px 5px;\n"
+"    margin: 0;\n"
+"    background: none;\n"
+"    background-color: rgb(97, 151, 132);\n"
+"    border-style: outset\n"
+"    }\n"
+"\n"
+"QPushButton:hover {\n"
+"background:rgba(75, 117, 102, 220)\n"
+"    }")
+        self.filePathBtn.setText("")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/onefile.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.filePathBtn.setIcon(icon7)
+        self.filePathBtn.setIconSize(QtCore.QSize(24, 24))
+        self.filePathBtn.setCheckable(True)
+        self.filePathBtn.setObjectName("filePathBtn")
+        self.filePathLayout.addWidget(self.filePathBtn)
+        self.folderPathBtn = QtWidgets.QPushButton(self.filePathWidget)
+        self.folderPathBtn.setMinimumSize(QtCore.QSize(51, 51))
+        self.folderPathBtn.setMaximumSize(QtCore.QSize(51, 51))
+        self.folderPathBtn.setStyleSheet("QPushButton{\n"
 "    font: 12pt \"Alata\";\n"
 "    color: rgb(0, 62, 41);\n"
 "    padding: 2px 5px;\n"
@@ -449,14 +471,14 @@ class Ui_AV_App(object):
 "QPushButton:hover {\n"
 "background:rgba(75, 117, 102, 220)\n"
 "    }")
-        self.pathBtn.setText("")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/files.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pathBtn.setIcon(icon7)
-        self.pathBtn.setIconSize(QtCore.QSize(24, 24))
-        self.pathBtn.setCheckable(True)
-        self.pathBtn.setObjectName("pathBtn")
-        self.filePathLayout.addWidget(self.pathBtn)
+        self.folderPathBtn.setText("")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/files.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.folderPathBtn.setIcon(icon8)
+        self.folderPathBtn.setIconSize(QtCore.QSize(24, 24))
+        self.folderPathBtn.setCheckable(True)
+        self.folderPathBtn.setObjectName("folderPathBtn")
+        self.filePathLayout.addWidget(self.folderPathBtn)
         self.gridLayout.addWidget(self.filePathWidget, 1, 1, 1, 1)
         spacerItem7 = QtWidgets.QSpacerItem(184, 48, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem7, 1, 2, 1, 1)
@@ -781,8 +803,8 @@ class Ui_AV_App(object):
         self.fileNameLabel.setText(_translate("AV_App", "File Name"))
         self.StatusLabel.setText(_translate("AV_App", "Status"))
         self.sizeLabel.setText(_translate("AV_App", "Actions"))
-        self.filePath.setText(_translate("AV_App", "File Path..."))
-        self.pathBtn.setToolTip(_translate("AV_App", "Choose Path..."))
+        self.filePath.setText(_translate("AV_App", "File / Folder Path..."))
+        self.folderPathBtn.setToolTip(_translate("AV_App", "Choose Path..."))
         self.scanBtn.setToolTip(_translate("AV_App", "Start Scan"))
         self.scanBtn.setText(_translate("AV_App", "Scan"))
         self.scanTitle.setText(_translate("AV_App", "Scan Result"))

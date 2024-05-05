@@ -921,21 +921,6 @@ background-color: transparent;</string>
          </widget>
          <widget class="QWidget" name="scansPage">
           <layout class="QGridLayout" name="gridLayout">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <property name="spacing">
-            <number>0</number>
-           </property>
            <item row="0" column="1">
             <spacer name="verticalSpacer_3">
              <property name="orientation">
@@ -966,14 +951,14 @@ background-color: transparent;</string>
             <widget class="QWidget" name="filePathWidget" native="true">
              <property name="minimumSize">
               <size>
-               <width>465</width>
+               <width>521</width>
                <height>63</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>465</width>
-               <height>63</height>
+               <width>521</width>
+               <height>4000</height>
               </size>
              </property>
              <layout class="QHBoxLayout" name="filePathLayout">
@@ -1016,12 +1001,59 @@ border-top-left-radius: 10px;
 border-bottom-left-radius: 10px</string>
                 </property>
                 <property name="text">
-                 <string>File Path...</string>
+                 <string>File / Folder Path...</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pathBtn">
+               <widget class="QPushButton" name="filePathBtn">
+                <property name="minimumSize">
+                 <size>
+                  <width>51</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>51</width>
+                  <height>51</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+	font: 12pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background: none;
+	background-color: rgb(97, 151, 132);
+	border-style: outset
+	}
+
+QPushButton:hover {
+background:rgba(75, 117, 102, 220)
+	}</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="AV_Icons.qrc">
+                  <normaloff>:/AV ICO/AV_Icons/onefile.ico</normaloff>:/AV ICO/AV_Icons/onefile.ico</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="folderPathBtn">
                 <property name="minimumSize">
                  <size>
                   <width>51</width>
