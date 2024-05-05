@@ -1076,7 +1076,7 @@ background:rgba(75, 117, 102, 220)
 	padding: 2px 5px;
 	margin: 0;
 	background: none;
-	background-color: rgb(97, 151, 132);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.409091 rgba(97, 151, 132, 255), stop:1 rgba(97, 151, 132, 198));
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	border-style: outset

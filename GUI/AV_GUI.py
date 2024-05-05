@@ -462,7 +462,7 @@ class Ui_AV_App(object):
 "    padding: 2px 5px;\n"
 "    margin: 0;\n"
 "    background: none;\n"
-"    background-color: rgb(97, 151, 132);\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.409091 rgba(97, 151, 132, 255), stop:1 rgba(97, 151, 132, 198));\n"
 "    border-top-right-radius: 10px;\n"
 "    border-bottom-right-radius: 10px;\n"
 "    border-style: outset\n"
