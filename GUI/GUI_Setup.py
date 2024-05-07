@@ -16,7 +16,6 @@ def get_default_download_folder():
         return home_dir
 
 class AV_Application(QMainWindow):
-    global ui
     start_other_function = pyqtSignal()
     def __init__(self):
         super(AV_Application,self).__init__()
@@ -24,7 +23,9 @@ class AV_Application(QMainWindow):
         self.ui = Ui_AV_App()
         self.ui.setupUi(self) 
         self.on_theatsBtn_clicked()
-
+        
+        self.scanBtn = self.ui.scanBtn
+        self.filePath = self.ui.filePath
     def open_file_dialog(self):
         print("open_file_dialog")
         path, ok = QFileDialog.getOpenFileName(self,"Select File ",get_default_download_folder(),"All Files (*)")
@@ -84,11 +85,14 @@ class AV_Application(QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(2)
     
     def on_infoBtn_clicked(self):
+        self.color_all_button_back()
         self.ui.stackedWidget.setCurrentIndex(4)
     def on_helpBtn_clicked(self):
+        self.color_all_button_back()
         self.ui.stackedWidget.setCurrentIndex(3)     
 
     def on_filePathBtn_toggled(self):
+        self.color_all_button_back()
         self.open_file_dialog()   
 
     def on_folderPathBtn_toggled(self):
@@ -98,9 +102,15 @@ class AV_Application(QMainWindow):
         pass
 
 if __name__ == "__main__":
+
+    #app,window = AV_GUI.start_GUI()
+    
+# def start_GUI():
     app = QApplication(sys.argv)
     window = AV_Application()
+    window.show()   
+    sys.exit(app.exec_()) 
 
-    window.show()    
+    #return app,window
 
-    sys.exit(app.exec_())
+

@@ -1,6 +1,7 @@
 <RCC>
   <qresource prefix="AV ICO">
     <file>AV_Icons/onefile.ico</file>
+    <file>AV_Icons/logo.ico</file>
     <file>AV_Icons/files.ico</file>
     <file>AV_Icons/av-favicon-color.ico</file>
     <file>AV_Icons/c_icon_132529.ico</file>

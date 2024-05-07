@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\AV_GUI.ui'
+# Form implementation generated from reading ui file '.\AV_GUI_UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -80,7 +80,7 @@ class Ui_AV_App(object):
 "")
         self.logo.setLineWidth(0)
         self.logo.setText("")
-        self.logo.setPixmap(QtGui.QPixmap(".\\logo.png"))
+        self.logo.setPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/logo.ico"))
         self.logo.setScaledContents(True)
         self.logo.setObjectName("logo")
         self.horizontalLayout_2.addWidget(self.logo)
@@ -404,6 +404,8 @@ class Ui_AV_App(object):
         self.scansPage = QtWidgets.QWidget()
         self.scansPage.setObjectName("scansPage")
         self.gridLayout = QtWidgets.QGridLayout(self.scansPage)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem5 = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
@@ -723,7 +725,7 @@ class Ui_AV_App(object):
         self.label_2.setMinimumSize(QtCore.QSize(281, 125))
         self.label_2.setMaximumSize(QtCore.QSize(281, 125))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap(".\\AV_Icons/logo-no-background.png"))
+        self.label_2.setPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/logo.ico"))
         self.label_2.setScaledContents(True)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
@@ -784,7 +786,7 @@ class Ui_AV_App(object):
         AV_App.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(AV_App)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(4)
         self.exitBtn.clicked.connect(AV_App.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(AV_App)
 

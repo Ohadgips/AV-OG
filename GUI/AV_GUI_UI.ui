@@ -177,7 +177,7 @@ margin: 0;
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>logo.png</pixmap>
+                <pixmap resource="AV_Icons.qrc">:/AV ICO/AV_Icons/logo.ico</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -651,7 +651,7 @@ QPushButton:hover {
           <number>0</number>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="threatsPage">
           <property name="sizePolicy">
@@ -921,6 +921,21 @@ background-color: transparent;</string>
          </widget>
          <widget class="QWidget" name="scansPage">
           <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item row="0" column="1">
             <spacer name="verticalSpacer_3">
              <property name="orientation">
@@ -1683,7 +1698,7 @@ border-bottom-left-radius: 10px</string>
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap>AV_Icons/logo-no-background.png</pixmap>
+                   <pixmap resource="AV_Icons.qrc">:/AV ICO/AV_Icons/logo.ico</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
