@@ -1,7 +1,8 @@
-from AV_GUI import Ui_AV_App
+from .AV_GUI import Ui_AV_App
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileDialog
 import sys,os
+#from . import AV_Icons_rc
 
 
 def get_default_download_folder():
@@ -22,22 +23,51 @@ class AV_Application(QMainWindow):
 
         self.ui = Ui_AV_App()
         self.ui.setupUi(self) 
-        self.on_theatsBtn_clicked()
-        
+        self.ui.stackedWidget.setCurrentIndex(5)
+        self.ui.scanBtn.setEnabled(False)
+        self.ui.scanBtn.hide()
         self.scanBtn = self.ui.scanBtn
         self.filePath = self.ui.filePath
+    
+    
+    def update_last_scan(self,date,threats,files):
+        self.ui.scanTime.setText("Last Scan At: " + date)
+        self.ui.numThreats.setText(str(threats)+" Threats Found")
+        self.ui.numScanned.setText(str(files)+" Files Scanned")
+
     def open_file_dialog(self):
         print("open_file_dialog")
         path, ok = QFileDialog.getOpenFileName(self,"Select File ",get_default_download_folder(),"All Files (*)")
         dialog = QFileDialog()
         self.ui.filePath.setText(path)
+        if self.existing_path():
+            self.ui.scanBtn.setEnabled(True)
+            self.ui.scanBtn.show()
+        else:
+            self.ui.scanBtn.setEnabled(False)
+            self.ui.scanBtn.hide()
+
+# enable the scan button if the path exists
+    def existing_path(self):
+        print("Checking Path")
+        if os.path.exists(self.ui.filePath.text()):
+            print("Existing Path")
+            return True
+        return False
 
     def open_folder_dialog(self):
         print("open_file_dialog")
         path = QFileDialog.getExistingDirectory(self,"Select A File ", get_default_download_folder(),QFileDialog.ShowDirsOnly)
         dialog = QFileDialog()
-        self.ui.filePath.setText(path)    
+        self.ui.filePath.setText(path) 
+        if self.existing_path():
+            self.ui.scanBtn.setEnabled(True)
+            self.ui.scanBtn.show()
+        else:
+            self.ui.scanBtn.setEnabled(False)
+            self.ui.scanBtn.hide()
 
+   
     def color_all_button_back(self):
         default = """QPushButton{\n\
     font: 12pt \"Alata\";\n\
@@ -98,19 +128,18 @@ class AV_Application(QMainWindow):
     def on_folderPathBtn_toggled(self):
         self.open_folder_dialog()           
 
+    
+
     def on_scanBtn_toggled(self):
         pass
 
-if __name__ == "__main__":
 
-    #app,window = AV_GUI.start_GUI()
     
-# def start_GUI():
+def start_GUI():
     app = QApplication(sys.argv)
     window = AV_Application()
     window.show()   
-    sys.exit(app.exec_()) 
 
-    #return app,window
+    return app,window
 
 

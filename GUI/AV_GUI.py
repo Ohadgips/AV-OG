@@ -716,6 +716,8 @@ class Ui_AV_App(object):
         self.widget.setObjectName("widget")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(9, 20, 9, 9)
+        self.verticalLayout_5.setSpacing(6)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setSpacing(0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
@@ -836,4 +838,4 @@ class Ui_AV_App(object):
 "Python & C++\n"
 ""))
         self.label_5.setText(_translate("AV_App", "By Ohad Gips 2024"))
-import AV_Icons_rc
+from . import AV_Icons_rc

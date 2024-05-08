@@ -1,8 +1,0 @@
-cd "C:\Users\USER\Desktop\Final Project\Client\Gui"
-
-pyuic5.exe .\AV_GUI_UI.ui -o .\AV_GUI.py
-
-pyrcc5.exe .\AV_Icons.qrc -o .\AV_Icons_rc.py
-
-pyuic5.exe .\File_Results.ui -o .\File_Results.py
-
