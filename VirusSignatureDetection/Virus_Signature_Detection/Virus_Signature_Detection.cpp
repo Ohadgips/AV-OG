@@ -5,7 +5,7 @@
 using namespace std;
 
 
-/*
+
 extern "C" __declspec(dllexport) int SearchForThreat(string root_directory,int threatsarray ,int counter){
     VirusSignature classhandler = VirusSignature();
     vector<VirusSignature::threat> threats;
@@ -14,7 +14,7 @@ extern "C" __declspec(dllexport) int SearchForThreat(string root_directory,int t
     return threatsarray;
 }
 
-*/
+
 
 
 
