@@ -1,16 +1,19 @@
+#ifndef VIRUSSIGNATURE_H
+#define VIRUSSIGNATURE_H
+
 #pragma once
 #include <sqlite3.h>
-#include <array>
 #include <vector>
 #include <string>
 #include <openssl/md5.h>
 #include <openssl/evp.h>
 #include <iostream>
+#include <array>
+#include <sqlite3.h>
 #include <fstream>
 #include <sstream>
-#include <sqlite3.h>
 #include <filesystem>
-#include <algorithm>
+#include <cstring>
 using namespace std;
 class VirusSignature
 {
@@ -20,14 +23,18 @@ class VirusSignature
 		sqlite3* DB2;
 
 	public:
-		struct threat {
-			const char* filepathname;
-			const char* threattype;
+		VirusSignature();
 
-			threat(const string& _filepathname, const string& _threattype);
+		struct threat {
+			string filepathname;
+			string threattype;
+			int id;
+			int database;
+
+			threat(const string& _filepathname, const string& _threattype, int _id, int _database);
 		};
 
-		VirusSignature();
+		//VirusSignature();
 
 		//sqlite3* ConnectToDB(string dbname);	
 	
@@ -41,11 +48,12 @@ class VirusSignature
 
 		void SpecificVirus(const char* md5hashstring, const char* filehash, vector<threat>& threats);
 
-		int SearchInDB(const char* md5hashstring, vector<threat>& threats);
+		void SearchInDB(const char* md5hashstring, vector<threat>& threats);
 
-		void processFiles(const string& root_directory, vector<threat>& threats,int counter);
+		void processFiles(const string& root_directory, vector<threat>& threats);
 
 		//vector<threat> SearchForThreat(string root_directory,int counter);
 
 };
+#endif
 

@@ -6,3 +6,4 @@ WindowsMalwareDetection/Datasets/DLLs_Imported.csv
 WindowsMalwareDetection/Datasets/API_Functions.csv
 /VirusSignatureDetection/Virus_Signature_Detection/.vs/Virus_Signature_Detection/v17/ipch/AutoPCH
 /VirusSignatureDetection/Virus_Signature_Detection/.vs/Virus_Signature_Detection/v17/ipch/AutoPCH
+*.ipch
