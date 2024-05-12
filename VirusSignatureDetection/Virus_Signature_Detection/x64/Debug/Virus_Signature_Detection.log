@@ -1,8 +1,7 @@
 ﻿  VirusSignature.cpp
-C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\VirusSignature.cpp(201,44): warning C4101: 'e': unreferenced local variable
-C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\VirusSignature.cpp(212,40): warning C4101: 'e': unreferenced local variable
+C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\VirusSignature.cpp(203,44): warning C4101: 'e': unreferenced local variable
+C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\VirusSignature.cpp(214,40): warning C4101: 'e': unreferenced local variable
   Virus_Signature_Detection.cpp
 C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\Virus_Signature_Detection.cpp(14,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Generating Code...
-     Creating library C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.lib and object C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.exp
   Virus_Signature_Detection.vcxproj -> C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.exe

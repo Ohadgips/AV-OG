@@ -1,0 +1,1 @@
+ g++ -std=c++17 -shared -o VS_Detection.dll VirusSignature.cpp Virus_Signature_Detection.cpp -I \C:\sqlite -I \C:\Program_Files\OpenSSL-Win64\include -L \C:\sqlite -L C:\Program_Files\OpenSSL-Win64\lib -lsqlite3 -lssl -lcrypto
