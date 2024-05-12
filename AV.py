@@ -2,19 +2,30 @@ from GUI import GUI_Setup
 from WindowsMalwareDetection import PE_ML
 import sys,os,threading,shutil,time,ctypes
 from datetime import date
+import ctypes
+import numpy as np 
 
 def scan_time_and_date():
     today = date.now()
     format_date = today.strftime("%d/%m/%Y %H:%M:%S")
     return format_date
 
-def count_files(path,count):
+def count_files(path):
+    count = 0
     for root_dir, cur_dir, files in os.walk(path):
         count += len(files)
     return count
 
-def virus_siganture_detection(path,threats_counter):
-    pass
+def virus_siganture_detection(path,threats_counter,files_number):
+    VSD_dll = ctypes.CDLL('.\VirusSignatureDetection\VS_Detection.dll')
+    VSD_dll.SearchForThreat.argtypes = [ctypes.c_char_p, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int)]
+    VSD_dll.SearchForThreat.restype = None
+    
+    DBarray1 = (ctypes.c_int * files_number)()
+    DBarray2 = (ctypes.c_int * files_number)()
+    counter = ctypes.c_int()
+
+    VSD_dll.SearchForThreat(path.encode(), DBarray1,DBarray2 ,ctypes.byref(counter))
 
 
 def windows_malware_detection(exe_files,threats_counter):
@@ -41,9 +52,8 @@ def scan_files(path):
                 if file.endswith(".exe"):
                     exe_files.append(os.path.join(root, file))
         
-        counter_thread = threading.Thread(target=count_files,args=(path,files_counter))
-        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (path,VSD_threats))
-        counter_thread.start()
+        files_counter = count_files(path)
+        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (path,VSD_threats,files_counter))
         VSD_thread.start()          
         
         # only if there is exe files will run the thread of the WMD
