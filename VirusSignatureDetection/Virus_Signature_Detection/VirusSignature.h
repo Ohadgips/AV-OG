@@ -14,6 +14,7 @@
 #include <sstream>
 #include <filesystem>
 #include <cstring>
+
 using namespace std;
 class VirusSignature
 {
@@ -23,7 +24,7 @@ class VirusSignature
 		sqlite3* DB2;
 
 	public:
-		VirusSignature();
+		VirusSignature(const char* db1_path,const char* db2_path);
 
 		struct threat {
 			string filepathname;
@@ -46,7 +47,7 @@ class VirusSignature
 
 		string HashFileToMD5(const string& filename);
 
-		void SpecificVirus(const char* md5hashstring, const char* filehash, vector<threat>& threats);
+		void SpecifyVirus(const char* md5hashstring, const char* filehash, vector<threat>& threats);
 
 		void SearchInDB(const char* md5hashstring, vector<threat>& threats);
 
@@ -55,5 +56,14 @@ class VirusSignature
 		//vector<threat> SearchForThreat(string root_directory,int counter);
 
 };
+
+#define VIRUS_SIGNATURE_DETECTION_API __declspec(dllexport)
+
+
+
+extern "C" {
+	VIRUS_SIGNATURE_DETECTION_API void SearchForThreat(const char* root_directory, const char* db1_root, const char* db2_root, int* threatsarray1, int* threatsarray2, int* counter);
+}
+
 #endif
 

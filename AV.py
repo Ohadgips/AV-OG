@@ -1,12 +1,12 @@
 from GUI import GUI_Setup
 from WindowsMalwareDetection import PE_ML
 import sys,os,threading,shutil,time,ctypes
-from datetime import date
+from datetime import datetime
 import ctypes
 import numpy as np 
 
 def scan_time_and_date():
-    today = date.now()
+    today = datetime.now()
     format_date = today.strftime("%d/%m/%Y %H:%M:%S")
     return format_date
 
@@ -14,63 +14,83 @@ def count_files(path):
     count = 0
     for root_dir, cur_dir, files in os.walk(path):
         count += len(files)
-    return count
+        print("File Counter: ",count)
+        if count == 0:
+            count = 1
+            return count
+        else:
+            return count
 
 def virus_siganture_detection(path,threats_counter,files_number):
-    VSD_dll = ctypes.CDLL('.\VirusSignatureDetection\VS_Detection.dll')
-    VSD_dll.SearchForThreat.argtypes = [ctypes.c_char_p, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int)]
-    VSD_dll.SearchForThreat.restype = None
+    #os.add_dll_directory('/VirusSignatureDetection/Virus_Signature_Detection')
+    dll_path = os.path.abspath(r'./Virus_Signature_Detection.dll')
+    VSD_dll = ctypes.CDLL(dll_path)
+    VSD_Func = VSD_dll.SearchForThreat
+    VSD_Func.argtypes = [ctypes.c_char_p,ctypes.c_char_p ,ctypes.c_char_p,ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int)]
+    VSD_Func.restype = None
     
     DBarray1 = (ctypes.c_int * files_number)()
     DBarray2 = (ctypes.c_int * files_number)()
-    counter = ctypes.c_int()
+    counter = ctypes.c_int(0)
 
-    VSD_dll.SearchForThreat(path.encode(), DBarray1,DBarray2 ,ctypes.byref(counter))
+
+    VSD_Func(path.encode(),b'./Data/VS1.db',b'./Data/VS2.db',DBarray1,DBarray2 ,ctypes.byref(counter))
+    threats_result1 = list(DBarray1)
+    threats_result2 = list(DBarray2)
+    counter_value = counter.value
+    print(threats_result1)
+    print(threats_result2)
+    print("Threats VSD: ",counter_value)
 
 
 def windows_malware_detection(exe_files,threats_counter):
     threats_counter = 0
-    
-    for path in exe_files:
-        file_path,file_type = PE_ML.multi_models_predict_exe(path)
+    if os.path.isdir(exe_files):
+        for path in exe_files:
+            file_path,file_type = PE_ML.multi_models_predict_exe(path)
+            if file_type != 0:
+                threats_counter += 1
+                threat_handle(file_path,file_type)
+    else:
+        file_path,file_type = PE_ML.multi_models_predict_exe(exe_files)
         if file_type != 0:
             threats_counter += 1
             threat_handle(file_path,file_type)
-    pass
+    print("Threats VSD: ",threats_counter)
+    
 
-def scan_files(path):
+def scan_files(files_path):
     date_start = scan_time_and_date()
     start_time  = time.time()
     WMD_threats = 0 ; VSD_threats = 0; files_counter = 0
     
     # For a folder path
-    if os.path.isdir(path):
+    if os.path.isdir(files_path):
         exe_files = []
         # list of all exe_files
-        for root, dirs, files in os.walk(path):
+        for root, dirs, files in os.walk(files_path):
             for file in files:
                 if file.endswith(".exe"):
                     exe_files.append(os.path.join(root, file))
         
-        files_counter = count_files(path)
-        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (path,VSD_threats,files_counter))
+        files_counter = count_files(files_path)
+        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (files_path,VSD_threats,files_counter))
         VSD_thread.start()          
         
         # only if there is exe files will run the thread of the WMD
-        if not exe_files:
+        if exe_files:
             WMD_thread = threading.Thread(target=windows_malware_detection,args=(exe_files,WMD_threats))
             WMD_thread.start()
             WMD_thread.join()
-        
-        counter_thread.join()
         VSD_thread.join()         
     
     # For a file path        
     else:
-        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (path,VSD_threats))
+        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (files_path,VSD_threats,1))
         VSD_thread.start()          
-        if path.endswith(".exe"):
-            WMD_thread = threading.Thread(target=windows_malware_detection,args=(exe_files,WMD_threats))
+        if files_path.endswith(".exe"):
+            print(files_path)
+            WMD_thread = threading.Thread(target=windows_malware_detection,args=(files_path,WMD_threats))
             WMD_thread.start()
             WMD_thread.join()
         VSD_thread.join()    
@@ -79,13 +99,24 @@ def scan_files(path):
     end_time = time.time()
     threats_counter = VSD_threats + WMD_threats
     elapsed_time = round(end_time - start_time, 2)
-    return date_start + " (Lasted For " + elapsed_time + " s)", threats_counter, files_counter
+    return date_start + " (Lasted For " + str(elapsed_time) + " s)", str(threats_counter), str(files_counter)
 
 def threat_handle(threat_path, threat_type):
+    print("handling")
     pass
+
+def scan_button(path,scanBtn):
+    scanBtn.hide() #instead of loading sequence for now
+    scan_thread = threading.Thread(target=scan_files,args=(path))
+    scan_thread.start()
+    scan_thread.join()
+    scanBtn.show()
+
+
 
 if __name__ == "__main__":
 
     app,window = GUI_Setup.start_GUI()
+    window.scanBtn.clicked.connect(lambda: scan_files(str(window.filePath.text())))
     
     sys.exit(app.exec_()) 

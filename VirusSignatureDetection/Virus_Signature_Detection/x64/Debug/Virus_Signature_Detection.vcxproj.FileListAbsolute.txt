@@ -2,7 +2,6 @@ C:\Users\USER\Documents\GitHub\AV_by_OG\Virus_Signature_Detection\x64\Debug\Viru
 C:\Users\USER\Documents\GitHub\AV_by_OG\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.exe
 C:\Users\USER\Documents\GitHub\AV_by_OG\Virus_Signature_Detection\x64\Debug\libcrypto-3-x64.dll
 C:\Users\USER\Documents\GitHub\AV_by_OG\Virus_Signature_Detection\x64\Debug\sqlite3.dll
-C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.exe
 C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.vcxproj.CopyComplete
+C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.dll
 C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\libcrypto-3-x64.dll
-C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\sqlite3.dll

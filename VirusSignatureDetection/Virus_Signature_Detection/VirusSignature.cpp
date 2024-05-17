@@ -25,6 +25,7 @@ sqlite3* ConnectToDB(string dbname)
 
 vector<string> SVList(sqlite3* DB)
 {
+    cout << "preparing SVList" << endl;
     vector<string> strings;
     sqlite3_stmt* statement;
     const char* sql = "SELECT string FROM main;";
@@ -43,21 +44,21 @@ vector<string> SVList(sqlite3* DB)
         }
     }
     if (result != SQLITE_OK) {
-        std::cout << "listing" << std::endl;
         std::cerr << "Error preparing statement: " << sqlite3_errmsg(DB) << std::endl;
     }
     return strings;
 }
 
 
-VirusSignature::VirusSignature()
+VirusSignature::VirusSignature(const char* db1_path,const char* db2_path)
 {
-    DB1 = ConnectToDB("Databases\\VS1.db");
-    DB2 = ConnectToDB("Databases\\VS2.db");
+    DB1 = ConnectToDB(db1_path);
+    DB2 = ConnectToDB(db2_path);
     VirusSign = SVList(DB1);
     vector <string> VirusSign2 = SVList(DB2);
 
     VirusSign.insert(VirusSign.end(), VirusSign2.begin(), VirusSign2.end());
+    cout << "Finished VirusSign Creation" << endl;
 }
 
 VirusSignature::threat::threat(const std::string& _filepathname, const std::string& _threattype, int _id, int _database)
@@ -100,7 +101,7 @@ void VirusSignature::AddToTable(sqlite3* DB2, const char* str, int size, const c
 //transfer the data to hex
 string VirusSignature::ToHex(array<uint8_t, 16> result) {
 
-
+    cout << "To Hex Start" << endl;
     std::stringstream hexStringStream;
     hexStringStream << std::hex << std::setfill('0');
     char ch;
@@ -115,6 +116,7 @@ string VirusSignature::ToHex(array<uint8_t, 16> result) {
 }
 //calculate md5 hash for file using open ssl
 string VirusSignature::HashFileToMD5(const string& filename) {
+    cout << "To MD5 START" << endl;
     ifstream file(filename, ios::binary);
     if (!file) {
         return "0";
@@ -137,14 +139,16 @@ string VirusSignature::HashFileToMD5(const string& filename) {
     }
 }
 
-void VirusSignature::SpecificVirus(const char* md5hashstring, const char* filehash, vector<threat>& threats)
+void VirusSignature::SpecifyVirus(const char* md5hashstring, const char* filehash, vector<threat>& threats)
 {
+    cout << "Specify Virus" << endl;
     sqlite3_stmt* statement;
     const char* sql = "SELECT rowid,name FROM main WHERE string = ?;";
     int result = sqlite3_prepare_v2(DB1, sql, -1, &statement, nullptr);
 
     if (result == SQLITE_OK)
     {
+        cout << "Found Virus DB1" << endl;
         sqlite3_bind_text(statement, 1, filehash, -1, SQLITE_TRANSIENT);
         if (sqlite3_step(statement) == SQLITE_ROW) {
             const unsigned char* text = sqlite3_column_text(statement, 0);
@@ -161,6 +165,7 @@ void VirusSignature::SpecificVirus(const char* md5hashstring, const char* fileha
         int result = sqlite3_prepare_v2(DB2, sql, -1, &statement, nullptr);
         if (result == SQLITE_OK)
         {
+            cout << "Found Virus DB2" << endl;
             sqlite3_bind_text(statement, 1, filehash, -1, SQLITE_TRANSIENT);
             if (sqlite3_step(statement) == SQLITE_ROW) {
                 const unsigned char* text = sqlite3_column_text(statement, 0);
@@ -179,65 +184,107 @@ void VirusSignature::SpecificVirus(const char* md5hashstring, const char* fileha
 //Search If Signature in DB
 void VirusSignature::SearchInDB(const char* md5hashstring, vector<threat>& threats)
 {
+    cout << "Search In DBs" << endl;
     string filehash = HashFileToMD5(md5hashstring);
     for (const auto& element : VirusSign) {
         if (element == filehash) {
-            SpecificVirus(md5hashstring, filehash.c_str(), threats);
+            SpecifyVirus(md5hashstring, filehash.c_str(), threats);
             cout << "Found Virus" << endl;
         }
     }
 }
 // use thread to check it and make it kind of recursive
-void VirusSignature::processFiles(const string& root_directory, vector<threat>& threats) {
-    for (const auto& entry : directory_iterator(root_directory)) {
-        if (!is_directory(entry.path())) {
-            string filepath = entry.path().string();
-            try {
-                file_status fstatus = status(entry);
-                if ((fstatus.permissions() & perms::owner_read) != perms::none)
+void VirusSignature::processFiles(const string& path_root, vector<threat>& threats) {
+    if (is_directory(path_root)) {
+        cout << "Process files FOLDER" << endl;
+        try {
+            for (const auto& entry : directory_iterator(path_root)) {
+                if (!is_directory(entry.path())) {
+                    string filepath = entry.path().string();
+                    try {
+                        file_status fstatus = status(entry);
+                        if ((fstatus.permissions() & perms::owner_read) != perms::none)
+                        {
+                            SearchInDB(filepath.c_str(), threats);
+
+                        }
+                    }
+                    catch (const filesystem_error& e) {
+                        cout << "Exception " << e.what() << endl;
+                        continue;
+                    }
+                }
+                else if (is_directory(entry.path()))
                 {
-                  SearchInDB(filepath.c_str(), threats);
-
+                    file_status fstatus = status(entry);
+                    if ((fstatus.permissions() & perms::owner_read) != perms::none) {
+                        try {
+                            processFiles(entry.path().string(), threats);
+                        }
+                        catch (std::exception& e) {
+                            continue;
+                        }
+                    }
                 }
             }
-            catch (const filesystem_error& e) {
-                continue;
-            }
         }
-        else if (is_directory(entry.path()))
+        catch (const exception& e)
         {
-            file_status fstatus = status(entry);
-            if ((fstatus.permissions() & perms::owner_read) != perms::none) {
-                try {
-                    processFiles(entry.path().string(), threats);
+            cout << "Exception " << e.what() << endl;
+        }
+    }
+    else if (is_regular_file(path_root)) {
+        cout << "Process files FILE" << endl;
+        try 
+        {
+            file_status fstatus = status(path_root);
+            
+            if (is_regular_file(fstatus) && (fstatus.permissions() & perms::owner_read) != perms::none) {
+                SearchInDB(path_root.c_str(), threats);
+            }
+        }
+        catch (const filesystem_error& e) {
+            cout << "Exception " << e.what() << endl;
+        }
+    }
+   
+}
+
+
+extern "C" {
+    VIRUS_SIGNATURE_DETECTION_API void SearchForThreat(const char* root_directory, const char* db1_root, const char* db2_root, int* threatsarray1, int* threatsarray2, int* counter)
+    {
+        VirusSignature classhandler = VirusSignature(db1_root, db2_root);
+        cout << "CLASS HANDLER" << endl;
+        vector<VirusSignature::threat> threats;
+        classhandler.processFiles(root_directory, threats);
+        cout << "PROCESS FILES FINISHED" << endl;
+        *counter = threats.size();
+        cout << *counter << endl;
+        if (!threats.empty()) {
+            int array1 = 0, array2 = 0;
+            for (int i = 0; i < *counter; i++)
+            {
+                cout << "Threat Data: "<< threats[i].database << " ID: " << threats[i].id << endl;
+                if (threats[i].database == 1) {
+                    threatsarray1[array1] = threats[i].id;
+                    array1++;
                 }
-                catch (std::exception& e) {
-                    continue;
+                if (threats[i].database == 2) {
+                    threatsarray2[array2] = threats[i].id;
+                    array2++;
+                }
+            }
+            for (int i = 0; i < *counter; i++)
+            {
+                if (threatsarray1[i] != NULL) {
+                    cout << "ARRAY 1 IN SPOT " <<i << "IS: "<< threatsarray1[i] << endl;
+                }
+                if (threatsarray2[i] != NULL) {
+                    cout << "ARRAY 2 IN SPOT " << i << "IS: " << threatsarray2[i] << endl;
                 }
             }
         }
+
     }
 }
-
-
-    
-/*
-extern "C++" __declspec(dllexport) vector<VirusSignature::threat> SearchForThreat(string root_directory, int counter) {
-    VirusSignature classhandler = VirusSignature();
-    vector<VirusSignature::threat> threats;
-    classhandler.processFiles(root_directory, threats, counter);
-    return threats;
-}
-
-int main()
-{
-    int counter = 0;
-    vector<VirusSignature::threat> data = SearchForThreat("C:\\Users\\USER\\Downloads\\", counter);
-    cout << counter << endl;
-    for (const auto& d : data) {
-        cout << d.filepathname << endl;
-    }
-    std::cout << std::endl;
-
-}
-*/

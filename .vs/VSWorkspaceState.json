@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GUI",
+    "\\VirusSignatureDetection",
+    "\\WindowsMalwareDetection"
   ],
-  "SelectedNode": "\\Virus_Signature_Detection.sln",
+  "SelectedNode": "\\AV.py",
   "PreviewInSolutionExplorer": false
 }
