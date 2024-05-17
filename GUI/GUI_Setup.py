@@ -122,17 +122,16 @@ class AV_Application(QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(3)     
 
     def on_filePathBtn_toggled(self):
-        self.color_all_button_back()
         self.open_file_dialog()   
 
     def on_folderPathBtn_toggled(self):
         self.open_folder_dialog()           
-
     
-
-    def on_scanBtn_toggled(self):
-        pass
-
+    def scan_result_update(self,time,threats,scanned):
+        self.ui.scanTime.setText("Last Scan Time: " + time)
+        self.ui.numScanned.setText(scanned + " Files Scanned")
+        self.ui.numThreats.setText(threats + " Threats Found")
+        
 
     
 def start_GUI():
