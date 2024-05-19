@@ -1,6 +1,7 @@
 from GUI import GUI_Setup
 from WindowsMalwareDetection import PE_ML
 import sys,os,threading,shutil,time,ctypes
+from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
 import ctypes
 import numpy as np 
@@ -43,83 +44,118 @@ def virus_siganture_detection(path,threats_counter,files_number):
     print("Threats VSD: ",threats_counter)
 
 def windows_malware_detection(exe_files,threats_counter):
-    threats_counter = 0
+    t_counter = 0
+    print(exe_files)
     if isinstance(exe_files, list):
         for path in exe_files:
             file_path,file_type = PE_ML.multi_models_predict_exe(path)
             if file_type != 0:
-                threats_counter[0] += 1
+                t_counter += 1
                 threat_handle(file_path,file_type)
     else:
         file_path,file_type = PE_ML.multi_models_predict_exe(exe_files)
         if file_type != 0:
-            threats_counter[0] += 1
+            t_counter += 1
             threat_handle(file_path,file_type)
-    print("Threats VSD: ",threats_counter)
-    
+    threats_counter[0] = t_counter
+    print("Threats VSD: ",threats_counter[0])
 
-def scan_files(files_path,window):
-
-    date_start = scan_time_and_date()
-    start_time  = time.time()
+# do the scan in a thread so it will not crush the app    
+class Scan_Worker(QObject):
+    finished = pyqtSignal()
+    progress = pyqtSignal(int)
     
-    WMD_threats = [0]
-    VSD_threats = [0]
-    files_counter = 0
-    files_counter = count_files(files_path)
-    # For a folder path
-    if os.path.isdir(files_path):
-        exe_files = []
-        # list of all exe_files
-        for root, dirs, files in os.walk(files_path):
-            for file in files:
-                if file.endswith(".exe"):
-                    exe_files.append(os.path.join(root, file))
+    def __init__(self, files_path, window):
+        super().__init__()
+        self.files_path = files_path
+        self.window = window
+    
+    def scan_files(self):
+
+        date_start = scan_time_and_date()
+        start_time  = time.time()
+    
+        WMD_threats = [0]
+        VSD_threats = [0]
+        files_counter = 0
+        files_counter = count_files(self.files_path)
+        # For a folder path
+        if os.path.isdir(self.files_path):
+            exe_files = []
+            # list of all exe_files
+            for root, dirs, files in os.walk(self.files_path):
+                for file in files:
+                    path = os.path.join(root, file)
+                    if file.endswith(".exe"):
+                        if str(path) not in exe_files:
+                            print("exe file: ",str(path))
+                            exe_files.append(path)
+                            print(str(exe_files))
         
-        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (files_path,VSD_threats,files_counter))
-        VSD_thread.start()          
+            VSD_thread = threading.Thread(target=virus_siganture_detection,args= (self.files_path,VSD_threats,files_counter))
+            VSD_thread.start()          
         
-        # only if there is exe files will run the thread of the WMD
-        if exe_files:
-            WMD_thread = threading.Thread(target=windows_malware_detection,args=(exe_files,WMD_threats))
-            WMD_thread.start()
-            WMD_thread.join()
-        VSD_thread.join()         
+            # only if there is exe files will run the thread of the WMD
+            if exe_files:
+                WMD_thread = threading.Thread(target=windows_malware_detection,args=(exe_files,WMD_threats))
+                WMD_thread.start()
+                WMD_thread.join()
+            VSD_thread.join()         
     
-    # For a file path        
-    else:
-        VSD_thread = threading.Thread(target=virus_siganture_detection,args= (files_path,VSD_threats,files_counter))
-        VSD_thread.start()          
-        if files_path.endswith(".exe"):
-            print(files_path)
-            WMD_thread = threading.Thread(target=windows_malware_detection,args=(files_path,WMD_threats))
-            WMD_thread.start()
-            WMD_thread.join()
-        VSD_thread.join()    
+        # For a file path        
+        else:
+            VSD_thread = threading.Thread(target=virus_siganture_detection,args= (self.files_path,VSD_threats,files_counter))
+            VSD_thread.start()          
+            if self.files_path.endswith(".exe"):
+                print(self.files_path)
+                WMD_thread = threading.Thread(target=windows_malware_detection,args=(self.files_path,WMD_threats))
+                WMD_thread.start()
+                WMD_thread.join()
+            VSD_thread.join()    
 
     
-    end_time = time.time()
-    print("data: ", VSD_threats, WMD_threats)
-    threats_counter = VSD_threats[0] + WMD_threats[0]
-    elapsed_time = round(end_time - start_time, 2)
-    window.scan_result_update(date_start + " (Lasted For " + str(elapsed_time) + " s)", str(threats_counter), str(files_counter))
+        end_time = time.time()
+        print("data: ", VSD_threats, WMD_threats)
+        threats_counter = VSD_threats[0] + WMD_threats[0]
+        elapsed_time = round(end_time - start_time, 2)
+        self.window.scan_result_update(date_start + " (Lasted For " + str(elapsed_time) + " s)", str(threats_counter), str(files_counter))
+        thread.quit()
 
 def threat_handle(threat_path, threat_type):
     print("handling")
     pass
 
-def scan_button(path,window):
-    window.scanBtn.hide() #instead of loading sequence for now
-    scan_thread = threading.Thread(target=scan_files,args=(path,window))
-    scan_thread.start()
-    scan_thread.join()
-    window.scanBtn.show()
+# setting the scan button
+def start_scan(path,window):
+    global thread, worker
+    window.scanBtn.hide()
+    worker = Scan_Worker(path, window)
+    thread = QThread()
+    worker.moveToThread(thread)
 
+    thread.started.connect(worker.scan_files)
+    worker.finished.connect(thread.quit)
+    worker.finished.connect(worker.deleteLater)
+    thread.finished.connect(thread.deleteLater)
+    thread.finished.connect(lambda: print("Thread finished"))
+    thread.finished.connect(lambda: window.scanBtn.setEnabled(True))
+    thread.finished.connect(lambda: window.scanBtn.show())
+    worker.progress.connect(report_progress)
+
+    thread.start()
+        
+
+    window.scanBtn.setEnabled(False)
+
+
+def report_progress(n):
+    print("Task progress: {n}/5")
 
 
 if __name__ == "__main__":
 
     app,window = GUI_Setup.start_GUI()
-    window.scanBtn.clicked.connect(lambda: scan_button(str(window.filePath.text()),window))
-    
+    #window.scanBtn.clicked.connect(lambda: scan_button(str(window.filePath.text()),window))
+    window.scanBtn.clicked.connect(lambda: start_scan(str(window.filePath.text()),window))
+
     sys.exit(app.exec_()) 

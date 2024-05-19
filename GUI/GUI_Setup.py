@@ -130,8 +130,7 @@ class AV_Application(QMainWindow):
     def scan_result_update(self,time,threats,scanned):
         self.ui.scanTime.setText("Last Scan Time: " + time)
         self.ui.numScanned.setText(scanned + " Files Scanned")
-        self.ui.numThreats.setText(threats + " Threats Found")
-        
+        self.ui.numThreats.setText(threats + " Threats Found")        
 
     
 def start_GUI():
