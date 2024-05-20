@@ -25,14 +25,10 @@ class VirusSignature
 
 	public:
 		VirusSignature(const char* db1_path,const char* db2_path);
-
 		struct threat {
 			string filepathname;
 			string threattype;
-			int id;
-			int database;
-
-			threat(const string& _filepathname, const string& _threattype, int _id, int _database);
+			threat(const string& _filepathname, const string& _threattype);
 		};
 
 		//VirusSignature();
@@ -47,9 +43,9 @@ class VirusSignature
 
 		string HashFileToMD5(const string& filename);
 
-		void SpecifyVirus(const char* md5hashstring, const char* filehash, vector<threat>& threats);
+		const char* SpecifyVirus(const char* md5hashstring, const char* filehash);
 
-		void SearchInDB(const char* md5hashstring, vector<threat>& threats);
+		const char* SearchInDB(const char* md5hashstring);
 
 		void processFiles(const string& root_directory, vector<threat>& threats);
 
@@ -60,10 +56,21 @@ class VirusSignature
 #define VIRUS_SIGNATURE_DETECTION_API __declspec(dllexport)
 
 
-
+#ifdef VIRUS_SIGNATURE_DETECTION_API
 extern "C" {
-	VIRUS_SIGNATURE_DETECTION_API void SearchForThreat(const char* root_directory, const char* db1_root, const char* db2_root, int* threatsarray1, int* threatsarray2, int* counter);
+#endif
+		struct Threat {
+			const char* fileName;
+			const char* fileType;
+		};
+		__declspec(dllexport) Threat* SearchForThreat(const char* root_directory, const char* db1_root, const char* db2_root, int* counter);
+	
+		__declspec(dllexport) void freeList(Threat* list, int count);
+
+#ifdef VIRUS_SIGNATURE_DETECTION_API
 }
+#endif
+
 
 #endif
 

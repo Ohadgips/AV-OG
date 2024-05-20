@@ -3,13 +3,21 @@ from WindowsMalwareDetection import PE_ML
 import sys,os,threading,shutil,time,ctypes
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
-import ctypes
+import ctypes,sqlite3
 import numpy as np 
 
 def scan_time_and_date():
     today = datetime.now()
     format_date = today.strftime("%d/%m/%Y %H:%M:%S")
     return format_date
+
+# handling threats from the VSD dll
+def VSD_threats_handle(DBlist1, DBlist2):
+    con = sqlite3.connect("./Data/VS1.db")
+    cursor = con.cursor()
+    for rowid in DBlist1: 
+        cursor.execute("SELECT  FROM countries WHERE number >= 5")
+        result = cursor.fetchall()
 
 def count_files(path):
     count = 0
@@ -22,7 +30,7 @@ def count_files(path):
     else: return 1
 
 
-def virus_siganture_detection(path,threats_counter,files_number):
+def virus_siganture_detection(window,path,threats_counter,files_number):
     #os.add_dll_directory('/VirusSignatureDetection/Virus_Signature_Detection')
     dll_path = os.path.abspath(r'./Virus_Signature_Detection.dll')
     VSD_dll = ctypes.CDLL(dll_path)
@@ -39,24 +47,27 @@ def virus_siganture_detection(path,threats_counter,files_number):
     threats_result1 = list(DBarray1)
     threats_result2 = list(DBarray2)
     threats_counter[0] = counter.value
+    GUI_Setup.VSD_threats_handle(threats_result1,threats_result2)
     print(threats_result1)
     print(threats_result2)
     print("Threats VSD: ",threats_counter)
 
-def windows_malware_detection(exe_files,threats_counter):
+def windows_malware_detection(window,exe_files,threats_counter):
     t_counter = 0
+    exe_types = {0: "Benign", 1: "RedLineStealer" ,2: "Downloader" ,3: "RemoteAccessTrojan" , 4:"BankingTrojan" , 5:"SnakeKeyLogger" ,6:"Spyware"}
     print(exe_files)
     if isinstance(exe_files, list):
         for path in exe_files:
             file_path,file_type = PE_ML.multi_models_predict_exe(path)
             if file_type != 0:
                 t_counter += 1
-                threat_handle(file_path,file_type)
+                
+                handle_virus = GUI_Setup.Threat_UI(window,file_path,exe_types[file_type]) # handle virus when found
     else:
         file_path,file_type = PE_ML.multi_models_predict_exe(exe_files)
         if file_type != 0:
             t_counter += 1
-            threat_handle(file_path,file_type)
+            handle_virus = GUI_Setup.Threat_UI(window,file_path,exe_types[file_type]) # handle virus when found
     threats_counter[0] = t_counter
     print("Threats VSD: ",threats_counter[0])
 
@@ -97,7 +108,7 @@ class Scan_Worker(QObject):
         
             # only if there is exe files will run the thread of the WMD
             if exe_files:
-                WMD_thread = threading.Thread(target=windows_malware_detection,args=(exe_files,WMD_threats))
+                WMD_thread = threading.Thread(target=windows_malware_detection,args=(window,exe_files,WMD_threats))
                 WMD_thread.start()
                 WMD_thread.join()
             VSD_thread.join()         
@@ -108,7 +119,7 @@ class Scan_Worker(QObject):
             VSD_thread.start()          
             if self.files_path.endswith(".exe"):
                 print(self.files_path)
-                WMD_thread = threading.Thread(target=windows_malware_detection,args=(self.files_path,WMD_threats))
+                WMD_thread = threading.Thread(target=windows_malware_detection,args=(window,self.files_path,WMD_threats))
                 WMD_thread.start()
                 WMD_thread.join()
             VSD_thread.join()    
@@ -120,10 +131,6 @@ class Scan_Worker(QObject):
         elapsed_time = round(end_time - start_time, 2)
         self.window.scan_result_update(date_start + " (Lasted For " + str(elapsed_time) + " s)", str(threats_counter), str(files_counter))
         thread.quit()
-
-def threat_handle(threat_path, threat_type):
-    print("handling")
-    pass
 
 # setting the scan button
 def start_scan(path,window):

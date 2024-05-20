@@ -109,10 +109,10 @@
       <AdditionalIncludeDirectories>C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection;C:\Program Files\OpenSSL-Win64\include\openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>C:\Program Files\OpenSSL-Win64\lib\openssl.lib;C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,12 +128,12 @@
       <AdditionalIncludeDirectories>C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection;C:\Program Files\OpenSSL-Win64\include\openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>C:\Program Files\OpenSSL-Win64\lib\openssl.lib;C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

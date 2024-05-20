@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\GUI",
+    "\\VirusHandle",
     "\\VirusSignatureDetection",
     "\\WindowsMalwareDetection"
   ],
-  "SelectedNode": "\\AV.py",
+  "SelectedNode": "\\VirusHandle\\pathDB.cpp",
   "PreviewInSolutionExplorer": false
 }

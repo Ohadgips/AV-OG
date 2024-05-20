@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\AV_GUI_UI.ui'
+# Form implementation generated from reading ui file '.\UI\AV_GUI_UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -21,7 +21,7 @@ class Ui_AV_App(object):
         font.setPointSize(8)
         AV_App.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\AV_Icons/av-favicon-color.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/av-favicon-color.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AV_App.setWindowIcon(icon)
         AV_App.setStyleSheet("*{\n"
 "border: none;\n"
@@ -80,7 +80,7 @@ class Ui_AV_App(object):
 "")
         self.logo.setLineWidth(0)
         self.logo.setText("")
-        self.logo.setPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/logo.ico"))
+        self.logo.setPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/logo.ico"))
         self.logo.setScaledContents(True)
         self.logo.setObjectName("logo")
         self.horizontalLayout_2.addWidget(self.logo)
@@ -105,7 +105,7 @@ class Ui_AV_App(object):
 "    }")
         self.infoBtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/info.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/info.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.infoBtn.setIcon(icon1)
         self.infoBtn.setIconSize(QtCore.QSize(24, 24))
         self.infoBtn.setCheckable(True)
@@ -132,7 +132,7 @@ class Ui_AV_App(object):
 "    }")
         self.helpBtn.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/help.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/help.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.helpBtn.setIcon(icon2)
         self.helpBtn.setIconSize(QtCore.QSize(24, 24))
         self.helpBtn.setCheckable(True)
@@ -159,7 +159,7 @@ class Ui_AV_App(object):
 "    }")
         self.exitBtn.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/power.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/power-off-003e29.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.exitBtn.setIcon(icon3)
         self.exitBtn.setIconSize(QtCore.QSize(27, 27))
         self.exitBtn.setCheckable(True)
@@ -197,7 +197,7 @@ class Ui_AV_App(object):
 "    background:rgba(75, 117, 102, 90);    \n"
 "    }")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/scan-virus.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/scan-virus.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.scansBtn.setIcon(icon4)
         self.scansBtn.setIconSize(QtCore.QSize(24, 24))
         self.scansBtn.setCheckable(True)
@@ -221,37 +221,12 @@ class Ui_AV_App(object):
 "    background:rgba(75, 117, 102, 90);    \n"
 "    }")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/data.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/data.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.theatsBtn.setIcon(icon5)
         self.theatsBtn.setIconSize(QtCore.QSize(24, 24))
         self.theatsBtn.setCheckable(True)
         self.theatsBtn.setObjectName("theatsBtn")
         self.horizontalLayout.addWidget(self.theatsBtn)
-        spacerItem4 = QtWidgets.QSpacerItem(5, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem4)
-        self.settingsBtn = QtWidgets.QPushButton(self.buttonsPlace)
-        self.settingsBtn.setMinimumSize(QtCore.QSize(109, 40))
-        self.settingsBtn.setStyleSheet("QPushButton{\n"
-"    font: 12pt \"Alata\";\n"
-"    color: rgb(0, 62, 41);\n"
-"    padding: 2px 5px;\n"
-"    margin: 0;\n"
-"    background-color: transparent;    \n"
-"    border-top-left-radius: 10px;\n"
-"    border-top-right-radius: 10px;\n"
-"    }\n"
-"\n"
-"QPushButton:hover {\n"
-"    background:rgba(75, 117, 102, 90);    \n"
-"    }")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/settings.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.settingsBtn.setIcon(icon6)
-        self.settingsBtn.setIconSize(QtCore.QSize(24, 24))
-        self.settingsBtn.setCheckable(True)
-        self.settingsBtn.setFlat(False)
-        self.settingsBtn.setObjectName("settingsBtn")
-        self.horizontalLayout.addWidget(self.settingsBtn)
         self.verticalLayout_3.addWidget(self.buttonsPlace, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.verticalLayout_2.addWidget(self.SubUpperMenu, 0, QtCore.Qt.AlignTop)
         self.verticalLayout.addWidget(self.upperMenu)
@@ -296,18 +271,18 @@ class Ui_AV_App(object):
         self.gridLayout_3.setVerticalSpacing(9)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.resultsTitles = QtWidgets.QWidget(self.threatsPage)
-        self.resultsTitles.setMinimumSize(QtCore.QSize(856, 53))
-        self.resultsTitles.setMaximumSize(QtCore.QSize(856, 53))
+        self.resultsTitles.setMinimumSize(QtCore.QSize(856, 51))
+        self.resultsTitles.setMaximumSize(QtCore.QSize(856, 51))
         self.resultsTitles.setStyleSheet("background: none;\n"
 "background-color: transparent;")
         self.resultsTitles.setObjectName("resultsTitles")
-        self.titles = QtWidgets.QHBoxLayout(self.resultsTitles)
-        self.titles.setContentsMargins(0, 0, 0, 0)
-        self.titles.setSpacing(0)
-        self.titles.setObjectName("titles")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.resultsTitles)
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.fileNameLabel = QtWidgets.QLabel(self.resultsTitles)
-        self.fileNameLabel.setMinimumSize(QtCore.QSize(351, 51))
-        self.fileNameLabel.setMaximumSize(QtCore.QSize(351, 51))
+        self.fileNameLabel.setMinimumSize(QtCore.QSize(410, 51))
+        self.fileNameLabel.setMaximumSize(QtCore.QSize(410, 51))
         self.fileNameLabel.setStyleSheet("font: 12pt \"Alata\";\n"
 "padding: 2px 5px;\n"
 "margin: 0;\n"
@@ -319,10 +294,25 @@ class Ui_AV_App(object):
 "border-bottom-right-radius: 10px;\n"
 "border-bottom-left-radius: 10px")
         self.fileNameLabel.setObjectName("fileNameLabel")
-        self.titles.addWidget(self.fileNameLabel)
+        self.horizontalLayout_5.addWidget(self.fileNameLabel)
+        self.typeLabel = QtWidgets.QLabel(self.resultsTitles)
+        self.typeLabel.setMinimumSize(QtCore.QSize(140, 51))
+        self.typeLabel.setMaximumSize(QtCore.QSize(140, 51))
+        self.typeLabel.setStyleSheet("font: 12pt \"Alata\";\n"
+"padding: 2px 5px;\n"
+"margin: 0;\n"
+"color: rgb(0, 62, 41);\n"
+"background: none;\n"
+"background-color:rgb(97, 151, 132);\n"
+"border-top-left-radius: 10px;\n"
+"border-top-right-radius: 10px;\n"
+"border-bottom-right-radius: 10px;\n"
+"border-bottom-left-radius: 10px")
+        self.typeLabel.setObjectName("typeLabel")
+        self.horizontalLayout_5.addWidget(self.typeLabel)
         self.StatusLabel = QtWidgets.QLabel(self.resultsTitles)
-        self.StatusLabel.setMinimumSize(QtCore.QSize(320, 0))
-        self.StatusLabel.setMaximumSize(QtCore.QSize(320, 51))
+        self.StatusLabel.setMinimumSize(QtCore.QSize(130, 51))
+        self.StatusLabel.setMaximumSize(QtCore.QSize(130, 51))
         self.StatusLabel.setStyleSheet("font: 12pt \"Alata\";\n"
 "padding: 2px 5px;\n"
 "margin: 0;\n"
@@ -334,7 +324,7 @@ class Ui_AV_App(object):
 "border-bottom-right-radius: 10px;\n"
 "border-bottom-left-radius: 10px")
         self.StatusLabel.setObjectName("StatusLabel")
-        self.titles.addWidget(self.StatusLabel)
+        self.horizontalLayout_5.addWidget(self.StatusLabel)
         self.sizeLabel = QtWidgets.QLabel(self.resultsTitles)
         self.sizeLabel.setMinimumSize(QtCore.QSize(152, 51))
         self.sizeLabel.setMaximumSize(QtCore.QSize(152, 51))
@@ -349,7 +339,7 @@ class Ui_AV_App(object):
 "border-bottom-right-radius: 10px;\n"
 "border-bottom-left-radius: 10px")
         self.sizeLabel.setObjectName("sizeLabel")
-        self.titles.addWidget(self.sizeLabel)
+        self.horizontalLayout_5.addWidget(self.sizeLabel)
         self.gridLayout_3.addWidget(self.resultsTitles, 0, 0, 1, 1)
         self.scrollArea = QtWidgets.QScrollArea(self.threatsPage)
         self.scrollArea.setEnabled(True)
@@ -399,7 +389,7 @@ class Ui_AV_App(object):
 "background-color: transparent;")
         self.filesResults.setObjectName("filesResults")
         self.scrollArea.setWidget(self.filesResults)
-        self.gridLayout_3.addWidget(self.scrollArea, 1, 0, 1, 1, QtCore.Qt.AlignTop)
+        self.gridLayout_3.addWidget(self.scrollArea, 1, 0, 1, 1)
         self.stackedWidget.addWidget(self.threatsPage)
         self.scansPage = QtWidgets.QWidget()
         self.scansPage.setObjectName("scansPage")
@@ -407,10 +397,10 @@ class Ui_AV_App(object):
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
-        spacerItem5 = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(184, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem6, 1, 0, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem4, 0, 1, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(184, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem5, 1, 0, 1, 1)
         self.filePathWidget = QtWidgets.QWidget(self.scansPage)
         self.filePathWidget.setMinimumSize(QtCore.QSize(521, 63))
         self.filePathWidget.setMaximumSize(QtCore.QSize(521, 4000))
@@ -448,9 +438,9 @@ class Ui_AV_App(object):
 "background:rgba(75, 117, 102, 220)\n"
 "    }")
         self.filePathBtn.setText("")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/onefile.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.filePathBtn.setIcon(icon7)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/onefile.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.filePathBtn.setIcon(icon6)
         self.filePathBtn.setIconSize(QtCore.QSize(24, 24))
         self.filePathBtn.setCheckable(True)
         self.filePathBtn.setObjectName("filePathBtn")
@@ -474,20 +464,20 @@ class Ui_AV_App(object):
 "background:rgba(75, 117, 102, 220)\n"
 "    }")
         self.folderPathBtn.setText("")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/files.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.folderPathBtn.setIcon(icon8)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/files.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.folderPathBtn.setIcon(icon7)
         self.folderPathBtn.setIconSize(QtCore.QSize(24, 24))
         self.folderPathBtn.setCheckable(True)
         self.folderPathBtn.setObjectName("folderPathBtn")
         self.filePathLayout.addWidget(self.folderPathBtn)
         self.gridLayout.addWidget(self.filePathWidget, 1, 1, 1, 1)
-        spacerItem7 = QtWidgets.QSpacerItem(184, 48, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem7, 1, 2, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(184, 48, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem6, 1, 2, 1, 1)
         self.ScanLayout = QtWidgets.QHBoxLayout()
         self.ScanLayout.setObjectName("ScanLayout")
-        spacerItem8 = QtWidgets.QSpacerItem(145, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.ScanLayout.addItem(spacerItem8)
+        spacerItem7 = QtWidgets.QSpacerItem(145, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.ScanLayout.addItem(spacerItem7)
         self.scanBtn = QtWidgets.QPushButton(self.scansPage)
         self.scanBtn.setMinimumSize(QtCore.QSize(109, 40))
         self.scanBtn.setMaximumSize(QtCore.QSize(109, 40))
@@ -521,11 +511,11 @@ class Ui_AV_App(object):
         self.scanBtn.setFlat(False)
         self.scanBtn.setObjectName("scanBtn")
         self.ScanLayout.addWidget(self.scanBtn)
-        spacerItem9 = QtWidgets.QSpacerItem(226, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.ScanLayout.addItem(spacerItem9)
+        spacerItem8 = QtWidgets.QSpacerItem(226, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.ScanLayout.addItem(spacerItem8)
         self.gridLayout.addLayout(self.ScanLayout, 2, 0, 1, 3)
-        spacerItem10 = QtWidgets.QSpacerItem(20, 168, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem10, 3, 1, 1, 1)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 168, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem9, 3, 1, 1, 1)
         self.scanInfo = QtWidgets.QWidget(self.scansPage)
         self.scanInfo.setMinimumSize(QtCore.QSize(856, 201))
         self.scanInfo.setMaximumSize(QtCore.QSize(856, 201))
@@ -588,26 +578,6 @@ class Ui_AV_App(object):
         self.filePathWidget.raise_()
         self.scanInfo.raise_()
         self.stackedWidget.addWidget(self.scansPage)
-        self.settingsPage = QtWidgets.QWidget()
-        self.settingsPage.setObjectName("settingsPage")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.settingsPage)
-        self.gridLayout_4.setContentsMargins(9, 9, 9, 9)
-        self.gridLayout_4.setSpacing(9)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.widget_3 = QtWidgets.QWidget(self.settingsPage)
-        self.widget_3.setStyleSheet("font: 12pt \"Alata\";\n"
-"padding: 2px 5px;\n"
-"margin: 0;\n"
-"color: rgb(0, 62, 41);\n"
-"background: none;\n"
-"background-color:rgb(208, 222, 216);\n"
-"border-top-left-radius: 10px;\n"
-"border-top-right-radius: 10px;\n"
-"border-bottom-right-radius: 10px;\n"
-"border-bottom-left-radius: 10px")
-        self.widget_3.setObjectName("widget_3")
-        self.gridLayout_4.addWidget(self.widget_3, 0, 0, 1, 1)
-        self.stackedWidget.addWidget(self.settingsPage)
         self.helpPage = QtWidgets.QWidget()
         self.helpPage.setObjectName("helpPage")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.helpPage)
@@ -715,25 +685,24 @@ class Ui_AV_App(object):
 "border-bottom-left-radius: 10px")
         self.widget.setObjectName("widget")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout_5.setContentsMargins(-1, 20, -1, -1)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(9, 20, 9, 9)
-        self.verticalLayout_5.setSpacing(6)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setSpacing(0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        spacerItem11 = QtWidgets.QSpacerItem(278, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem11)
+        spacerItem10 = QtWidgets.QSpacerItem(278, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem10)
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setMinimumSize(QtCore.QSize(281, 125))
         self.label_2.setMaximumSize(QtCore.QSize(281, 125))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/logo.ico"))
+        self.label_2.setPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/logo.ico"))
         self.label_2.setScaledContents(True)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_4.addWidget(self.label_2)
-        spacerItem12 = QtWidgets.QSpacerItem(278, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem12)
+        spacerItem11 = QtWidgets.QSpacerItem(278, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem11)
         self.verticalLayout_5.addLayout(self.horizontalLayout_4)
         self.label = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
@@ -751,15 +720,15 @@ class Ui_AV_App(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout_5.addWidget(self.label)
-        spacerItem13 = QtWidgets.QSpacerItem(20, 32, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_5.addItem(spacerItem13)
+        spacerItem12 = QtWidgets.QSpacerItem(20, 32, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem12)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.label_4 = QtWidgets.QLabel(self.widget)
         self.label_4.setMinimumSize(QtCore.QSize(81, 71))
         self.label_4.setMaximumSize(QtCore.QSize(81, 71))
         self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/file_type_python_icon_130221.ico"))
+        self.label_4.setPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/file_type_python_icon_130221.ico"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_3.addWidget(self.label_4)
@@ -767,12 +736,12 @@ class Ui_AV_App(object):
         self.label_3.setMinimumSize(QtCore.QSize(71, 71))
         self.label_3.setMaximumSize(QtCore.QSize(71, 71))
         self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap(":/AV ICO/AV_Icons/c_icon_132529.ico"))
+        self.label_3.setPixmap(QtGui.QPixmap(":/AV_Icons/AV_Icons/c_icon_132529.ico"))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_3.addWidget(self.label_3)
-        spacerItem14 = QtWidgets.QSpacerItem(483, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem14)
+        spacerItem13 = QtWidgets.QSpacerItem(483, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem13)
         self.label_5 = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
         font.setFamily("Alata")
@@ -788,7 +757,7 @@ class Ui_AV_App(object):
         AV_App.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(AV_App)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(3)
         self.exitBtn.clicked.connect(AV_App.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(AV_App)
 
@@ -802,9 +771,8 @@ class Ui_AV_App(object):
         self.scansBtn.setText(_translate("AV_App", "Scans"))
         self.theatsBtn.setToolTip(_translate("AV_App", "Results"))
         self.theatsBtn.setText(_translate("AV_App", "Threats"))
-        self.settingsBtn.setToolTip(_translate("AV_App", "Settings"))
-        self.settingsBtn.setText(_translate("AV_App", "Settings"))
         self.fileNameLabel.setText(_translate("AV_App", "File Name"))
+        self.typeLabel.setText(_translate("AV_App", "Type"))
         self.StatusLabel.setText(_translate("AV_App", "Status"))
         self.sizeLabel.setText(_translate("AV_App", "Actions"))
         self.filePath.setText(_translate("AV_App", "File / Folder Path..."))

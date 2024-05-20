@@ -1,9 +1,9 @@
 <RCC>
   <qresource prefix="AV_Icons">
+    <file>../AV_Icons/file_type_python_icon_130221.ico</file>
     <file>../AV_Icons/av-favicon-color.ico</file>
     <file>../AV_Icons/c_icon_132529.ico</file>
     <file>../AV_Icons/data.ico</file>
-    <file>../AV_Icons/file_type_python_icon_130221.ico</file>
     <file>../AV_Icons/files.ico</file>
     <file>../AV_Icons/help.ico</file>
     <file>../AV_Icons/info.ico</file>
