@@ -26,5 +26,8 @@
     <ClInclude Include="pathDB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VirusHandle.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

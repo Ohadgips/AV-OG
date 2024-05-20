@@ -102,7 +102,7 @@ border-bottom-left-radius: 10px</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="fileStatus_2">
+       <widget class="QLabel" name="fileStatus">
         <property name="minimumSize">
          <size>
           <width>320</width>

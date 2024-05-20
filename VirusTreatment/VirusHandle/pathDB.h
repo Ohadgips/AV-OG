@@ -1,30 +1,34 @@
+
+#ifndef PATHDB_H
+#define PATHDB_H
+
 #include <sqlite3.h> 
 #include <string>
 #include <iostream>
-
+using namespace std;
 class pathDB
 {
-	private:
-		sqlite3* DB;
+	
 
-	public:
+public:
 		
-		sqlite3* CreateDB();
+	pathDB();
+		 
+	int CreateTable();
+
+	void UpdateStatus(const string &path, const string &status);
 		
-		 int CreateTable();
+	void InsertPaths(const char* path, const char* newPath);
 
-		 int UpdateStatus(string path, string status);
-		
-		 int InsertPaths(string path, string newPath);
+	string GetFileNewPath(const char* path);
 
-		 string GetFileNewPath(string path);
+	void close_DB();
 
-		
-			struct QuarantinedFile {
-			std::string originalPath;
-			std::string quarantinePath;
-			bool isClean;
-		};
+	bool ExistsInDB(const char* path);
 
+private:
+
+	sqlite3* DB;
 };
 
+#endif // PATHDB_H

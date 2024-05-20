@@ -84,7 +84,7 @@ void VirusSignature::AddToTable(sqlite3* DB2, const char* str, int size, const c
     res = sqlite3_step(statement);
 
     //error
-    if (res != SQLITE_OK) {
+    if (res != SQLITE_DONE) {
         std::cerr << "Error Insert" << std::endl;
         //sqlite3_free(messaggeError);
     }

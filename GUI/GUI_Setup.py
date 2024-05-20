@@ -1,6 +1,7 @@
 from .AV_GUI import Ui_AV_App
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileDialog
+from PyQt5 import uic
 import sys,os
 #from . import AV_Icons_rc
 
@@ -15,6 +16,20 @@ def get_default_download_folder():
         return os.path.join(home_dir, 'Downloads')
     else:
         return home_dir
+
+class Threat_UI(object):
+    
+    def __init__(self,file_name):
+        self.ui = uic.load('./UI/File_Results.ui"')
+        self.ui.fileName.setText(str(file_name))
+        self.dll_path = os.path.abspath(r'./VirusHandle.dll')
+    
+    def on_allowFileBtn_toggled(self):
+        self.ui.fileStatus.setText(str("Allow"))
+    
+    def on_deleteFileBtn_toggled(self):
+        self.ui.fileStatus.setText(str("Deleted"))
+
 
 class AV_Application(QMainWindow):
     start_other_function = pyqtSignal()
@@ -132,12 +147,16 @@ class AV_Application(QMainWindow):
         self.ui.numScanned.setText(scanned + " Files Scanned")
         self.ui.numThreats.setText(threats + " Threats Found")        
 
-    
 def start_GUI():
     app = QApplication(sys.argv)
     window = AV_Application()
     window.show()   
 
     return app,window
+
+
+
+
+
 
 
