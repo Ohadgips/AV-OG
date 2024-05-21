@@ -59,10 +59,10 @@ VirusSignature::VirusSignature(const char* db1_path,const char* db2_path)
     VirusSign.insert(VirusSign.end(), VirusSign2.begin(), VirusSign2.end());
     cout << "Finished VirusSign Creation" << endl;
 }
-
-VirusSignature::threat::threat(const std::string& _filepathname, const std::string& _threattype)
+/*
+VirusSignature::threat::threat(const char* _filepathname, const char* _threattype)
     : filepathname(_filepathname), threattype(_threattype){
-}
+}*/
 
 //add new signature to db (will be in more use with the behavior detection later)
 void VirusSignature::AddToTable(sqlite3* DB2, const char* str, int size, const char* name, int flevel)
@@ -100,7 +100,7 @@ void VirusSignature::AddToTable(sqlite3* DB2, const char* str, int size, const c
 //transfer the data to hex
 string VirusSignature::ToHex(array<uint8_t, 16> result) {
 
-    cout << "To Hex Start" << endl;
+    //cout << "To Hex Start" << endl;
     std::stringstream hexStringStream;
     hexStringStream << std::hex << std::setfill('0');
     char ch;
@@ -114,8 +114,8 @@ string VirusSignature::ToHex(array<uint8_t, 16> result) {
 
 }
 //calculate md5 hash for file using open ssl
-string VirusSignature::HashFileToMD5(const string& filename) {
-    cout << "To MD5 START" << endl;
+string VirusSignature::HashFileToMD5(string filename) {
+    //cout << "To MD5 START" << endl;
     ifstream file(filename, ios::binary);
     if (!file) {
         return "0";
@@ -140,7 +140,7 @@ string VirusSignature::HashFileToMD5(const string& filename) {
 
 const char* VirusSignature::SpecifyVirus(const char* md5hashstring, const char* filehash)
 {
-    cout << "Specify Virus" << endl;
+    //cout << "Specify Virus" << endl;
     sqlite3_stmt* statement;
     const char* threat_type = nullptr;
     const char* sql = "SELECT name FROM main WHERE string = ?;";
@@ -182,7 +182,8 @@ const char* VirusSignature::SpecifyVirus(const char* md5hashstring, const char* 
 //Search If Signature in DB
 const char* VirusSignature::SearchInDB(const char* md5hashstring)
 {
-    cout << "Search In DBs" << endl; const char* virus_type = nullptr;
+    //cout << "Search In DBs" << endl; 
+    const char* virus_type = nullptr;
     string filehash = HashFileToMD5(md5hashstring);
     for (const auto& element : VirusSign) {
         if (element == filehash) {
@@ -193,8 +194,8 @@ const char* VirusSignature::SearchInDB(const char* md5hashstring)
     return virus_type;
 }
 // use thread to check it and make it kind of recursive
-void VirusSignature::processFiles(const string& path_root, vector<threat>& threats) {
-    const char* virus_type;
+void VirusSignature::processFiles(string path_root, vector<threat>& threats) {
+    const char* virus_type = nullptr;
     if (is_directory(path_root)) {
         cout << "Process files FOLDER" << endl;
         try {
@@ -208,7 +209,9 @@ void VirusSignature::processFiles(const string& path_root, vector<threat>& threa
                             virus_type = SearchInDB(filepath.c_str());
                             if (virus_type != nullptr)
                             {
-                                threat file(filepath.c_str(), virus_type);
+                                threat file (filepath.c_str(), virus_type);
+                                //cout << "file:  " << file.filepathname << endl;
+                                //cout << "tpye:  " << file.threattype << endl;
                                 // Process or save the retrieved string here
                                 threats.push_back(file);
                             }
@@ -249,6 +252,8 @@ void VirusSignature::processFiles(const string& path_root, vector<threat>& threa
                 if (virus_type != nullptr)
                 {
                     threat file(path_root.c_str(), virus_type);
+                    //cout << "file:  " << file.filepathname << endl;
+                    //cout << "type:  " << file.threattype << endl;
                     // Process or save the retrieved string here
                     threats.push_back(file);
                 }
@@ -263,35 +268,29 @@ void VirusSignature::processFiles(const string& path_root, vector<threat>& threa
 
 
 extern "C" {
-    __declspec(dllexport) Threat* SearchForThreat(const char* root_directory, const char* db1_root, const char* db2_root, int* counter)
+    __declspec(dllexport) void SearchForThreat(const char* root_directory, threat* threatlist,const char* db1_root, const char* db2_root, int* counter)
     {
         VirusSignature classhandler = VirusSignature(db1_root, db2_root);
         cout << "CLASS HANDLER" << endl;
-        vector<VirusSignature::threat> threats;
+        vector<threat> threats;
         classhandler.processFiles(root_directory, threats);
         cout << "PROCESS FILES FINISHED" << endl;
-        *counter = threats.size();
-        Threat* cThreatList = new Threat[*counter];
-        if (!threats.empty()) {
-            for (int i = 0; i < *counter; i++) {
-                cThreatList[i].fileName = threats[i].filepathname.c_str();
-                cThreatList[i].fileType = threats[i].threattype.c_str();
-                cout << "path: " << cThreatList[i].fileName << endl;
-                cout << "type: " << cThreatList[i].fileType << endl;
-
-            }
-        }
+        *counter = static_cast<int>(threats.size());
         cout << *counter << endl;
-        return cThreatList;
-    }
-
-    __declspec(dllexport) void freeList(Threat* list, int count) {
-        delete[] list;
+        for (int i = 0; i < *counter; ++i) {
+            //cout << threats[i].filepathname << " // " << threats[i].threattype << endl;
+            new(&threatlist[i]) threat(threats[i].filepathname, threats[i].threattype);
+        }
     }
 }
-/*
+
+
 int main() {
 
     int Counter = 0;
-    Threat* t = SearchForThreat("C:/Users/USER/Downloads/Test", "VS1.DB", "VS2.DB", &Counter);
-}*/
+    threat* t = new threat[1000];
+    SearchForThreat("C:/Users/USER/Downloads", t,"VS1.DB", "VS2.DB", &Counter);
+    for (int i = 0; i < Counter; ++i) {
+        cout << t[i].filepathname << " // " << t[i].threattype << endl;
+    }
+}

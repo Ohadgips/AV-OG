@@ -4,8 +4,9 @@
     "\\GUI",
     "\\VirusHandle",
     "\\VirusSignatureDetection",
+    "\\VirusSignatureDetection\\Virus_Signature_Detection",
     "\\WindowsMalwareDetection"
   ],
-  "SelectedNode": "\\VirusHandle\\pathDB.cpp",
+  "SelectedNode": "\\VirusHandle\\VirusHandle.cpp",
   "PreviewInSolutionExplorer": false
 }
