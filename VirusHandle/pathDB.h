@@ -16,7 +16,7 @@ public:
 		 
 	int CreateTable();
 
-	void UpdateStatus(const string &path, const string &status);
+	void UpdateStatus(const char* path, const string &status);
 		
 	void InsertPaths(const char* path, const char* newPath);
 
@@ -25,7 +25,13 @@ public:
 	void close_DB();
 
 	bool ExistsInDB(const char* path);
-
+	
+	~pathDB() {
+		if (DB) {
+			sqlite3_close(DB);
+			std::cout << "Database closed successfully" << std::endl;
+		}
+	}
 private:
 
 	sqlite3* DB;

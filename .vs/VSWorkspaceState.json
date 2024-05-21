@@ -7,6 +7,6 @@
     "\\VirusSignatureDetection\\Virus_Signature_Detection",
     "\\WindowsMalwareDetection"
   ],
-  "SelectedNode": "\\VirusHandle\\VirusHandle.cpp",
+  "SelectedNode": "\\VirusSignatureDetection\\Virus_Signature_Detection\\VirusSignature.h",
   "PreviewInSolutionExplorer": false
 }

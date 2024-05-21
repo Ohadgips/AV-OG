@@ -1,10 +1,37 @@
 from .AV_GUI import Ui_AV_App
 from PyQt5.QtCore import pyqtSignal,Qt
 from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileDialog,QVBoxLayout
-from PyQt5 import uic
+from PyQt5.uic import loadUi
 import sys,os,ctypes,threading
 #from . import AV_Icons_rc
 
+def restore_file(widget):
+    dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
+    VH_dll = ctypes.CDLL(dll_path)
+    widget.fileStatus.setText(str("Allowed"))
+    Allow_Func = VH_dll.restorefile
+    Allow_Func.argtypes = [ctypes.c_char_p];
+    Allow_Func.restype = None
+        
+    path = widget.fileName.text()
+    print(path)
+    Allow_Func(path.encode())
+    widget.allowFileBtn.hide()
+    widget.deleteFileBtn.hide()
+    
+def delete_file(widget):
+    dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
+    VH_dll = ctypes.CDLL(dll_path)
+    widget.fileStatus.setText(str("Deleted"))
+    Delete_Func = VH_dll.deletefile
+    Delete_Func.argtypes = [ctypes.c_char_p]
+    Delete_Func.restype = None
+        
+    path = widget.fileName.text()
+    print(path)
+    Delete_Func(path.encode())
+    widget.allowFileBtn.hide()
+    widget.deleteFileBtn.hide()
 
 def get_default_download_folder():
     # Get the user's home directory
@@ -20,40 +47,22 @@ def get_default_download_folder():
 class Threat_UI(QWidget):
     
     def __init__(self,window,file_name,filetype):
-        self.widget = uic.load('./UI/File_Results.ui"')
+        ui_path = os.path.abspath(r'./GUI/UI/File_Results.ui')        
+        self.widget = loadUi(ui_path)
         self.widget.fileName.setText(str(file_name))
         self.widget.fileType.setText(str(filetype))
         self.widget.fileStatus.setText("Quarantined")
-        dll_path = os.path.abspath(r'./VirusHandle.dll')
-        self.VH_dll = ctypes.CDLL(dll_path)
+        window.add_to_scorll_area(self.widget)
+        dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
+        VH_dll = ctypes.CDLL(dll_path)
+        Q_Func = VH_dll.quarantinefile
         Q_Func.restype = None
-        
-        Q_Func = self.VH_dll.quarantinefile
         Q_Func.argtypes = [ctypes.c_char_p];
         Q_Func(file_name.encode())
-        window.add_to_scorll_area(self.widget)
+        self.widget.allowFileBtn.clicked.connect(lambda: restore_file(self.widget))
+        self.widget.deleteFileBtn.clicked.connect(lambda: delete_file(self.widget))
 
-    def on_allowFileBtn_toggled(self):
-        self.widget.fileStatus.setText(str("Allowed"))
-        Allow_Func = self.VH_dll.restorefile
-        Allow_Func.argtypes = [ctypes.c_char_p];
-        Allow_Func.restype = None
-        
-        path = self.widget.fileName.text()
-        Allow_Func(path.encode())
-        self.widget.allowFileBtn.hide()
-        self.widget.deleteFileBtn.hide()
-    
-    def on_deleteFileBtn_toggled(self):
-        self.widget.fileStatus.setText(str("Deleted"))
-        Delete_Func = self.VH_dll.deletefile
-        Delete_Func.argtypes = [ctypes.c_char_p]
-        Delete_Func.restype = None
-        
-        path = self.widget.fileName.text()
-        Delete_Func(path.encode())
-        self.widget.allowFileBtn.hide()
-        self.widget.deleteFileBtn.hide()
+   
 
 
 class AV_Application(QMainWindow):
@@ -68,14 +77,15 @@ class AV_Application(QMainWindow):
         self.ui.scanBtn.hide()
         self.scanBtn = self.ui.scanBtn
         self.filePath = self.ui.filePath
-        self.container_widget = QWidget()
-        self.ui.scrollArea.setWidget(self.container_widget)
-        self.container_layout = QVBoxLayout(self.container_widget)
+        self.container_layout = QVBoxLayout(self.ui.filesResults)
         self.container_layout.setAlignment(Qt.AlignTop)
-    
+        self.container_layout.setContentsMargins(0, 0, 0, 0)
+        self.container_layout.setSpacing(5)
+
     def add_to_scorll_area(self,widget):
-         self.container_layout.insertWidget(0, self.widget)
-    
+         self.container_layout.insertWidget(0, widget)
+         self.container_layout.update()
+         
     def update_last_scan(self,date,threats,files):
         self.ui.scanTime.setText("Last Scan At: " + date)
         self.ui.numThreats.setText(str(threats)+" Threats Found")

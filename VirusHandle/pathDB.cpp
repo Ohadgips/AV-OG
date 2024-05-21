@@ -7,7 +7,7 @@ pathDB::pathDB()
 {
     int res;
 
-    res = sqlite3_open("VirusPaths.db", &DB);
+    res = sqlite3_open("Data/VirusPaths.db", &DB);
 
     if (res != SQLITE_OK) {
         cerr << "Error with the DB" << sqlite3_errmsg(DB);
@@ -101,24 +101,25 @@ void pathDB::InsertPaths(const char* path, const char* newPath)
     sqlite3_finalize(statement);
 }
 
-void pathDB::UpdateStatus(const string &path, const string &status)
+void pathDB::UpdateStatus(const char*path, const string &status)
 {
+    cout << "upadate file: "<< path << " to status: "<< status << endl;
     //char* messaggeError;
     sqlite3_stmt* statement;
     int res = 0;
-    string sql = "UPDATE PATHS SET STATUS = ? WHERE ORIGINAL_PATH = ?;";
+    const char* sql = "UPDATE PATHS SET STATUS = ? WHERE ORIGINAL_PATH = ?;";
 
-    res = sqlite3_prepare_v2(DB, sql.c_str(), -2, &statement, 0);
+    res = sqlite3_prepare_v2(DB, sql, -2, &statement, 0);
     if (res != SQLITE_OK) {
         std::cerr << "Error preparing statement " << sqlite3_errmsg(DB) << std::endl;
     }
-    sqlite3_bind_text(statement, 2, path.c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_text(statement, 1, status.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 2, path, -1, SQLITE_STATIC);
 
     res = sqlite3_step(statement);
 
     if (res != SQLITE_DONE) {
-        std::cerr << "Error update" << std::endl;
+        std::cerr << "Error update: " << sqlite3_errmsg(DB) << std::endl;
     }
     else
         std::cout << "Records Updated Successfully!" << std::endl;

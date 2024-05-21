@@ -27,7 +27,7 @@ wstring stringToWChar(const std::string& str)
 
 }
 extern "C" {
-    VIRUS_HANDLE_API void quarantinefile(const char* filePath) {
+    __declspec(dllexport) void quarantinefile(const char* filePath) {
 
         wstring widepath = stringToWChar(string(filePath));
         LPWSTR LPwidepath = const_cast<LPWSTR>(widepath.c_str());
@@ -67,17 +67,19 @@ extern "C" {
             Database.UpdateStatus(filePath, "Quarantined");
 
         wcout << L" File quarantined successfully: " << quarantinedFilePath << endl;
-        Database.close_DB();
     }
 
 
+}
 
+extern "C" {
 
-
-    VIRUS_HANDLE_API void deletefile(const char* filepath)
+    __declspec(dllexport) void deletefile(const char* filepath)
     {
+        cout << "File deleted: " << filepath << endl;
         pathDB Database = pathDB();
         string new_path = Database.GetFileNewPath(filepath);
+        cout << "File deleted: " << new_path << endl;
 
         // deletes the file if it exists
         int result = remove(new_path.c_str());
@@ -87,15 +89,15 @@ extern "C" {
             cerr << "File not deleted";
         }
         else {
-            Database.UpdateStatus(string(filepath), "Deleted");
+            Database.UpdateStatus(filepath, "Deleted");
             cout << "File deleted successfully";
         }
-        Database.close_DB();
-
     }
-
-    VIRUS_HANDLE_API void restorefile(const char* filepath)
+}
+extern "C" {
+    __declspec(dllexport) void restorefile(const char* filepath)
     {
+        cout << "File restored: " << filepath << endl;
         pathDB Database = pathDB();
         string new_path = Database.GetFileNewPath(filepath);
 
@@ -125,7 +127,6 @@ extern "C" {
 
         remove(new_path.c_str());
         Database.UpdateStatus(filepath, "Restored");
-        Database.close_DB();
 
     }
 }
