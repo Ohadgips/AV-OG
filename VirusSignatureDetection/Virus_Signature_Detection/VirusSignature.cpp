@@ -284,7 +284,7 @@ extern "C" {
     }
 }
 
-
+/*
 int main() {
 
     int Counter = 0;
@@ -293,4 +293,4 @@ int main() {
     for (int i = 0; i < Counter; ++i) {
         cout << t[i].filepathname << " // " << t[i].threattype << endl;
     }
-}
+}*/

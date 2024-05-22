@@ -36,7 +36,8 @@ def count_files(path):
 
 def virus_siganture_detection(path,threats_counter,threats_list):
     try:
-
+        # make sure there is not error with the paths
+        normalized_path = os.path.normpath(path)
         dll_path = os.path.abspath(r'./DLLs/Virus_Signature_Detection.dll')
         VSD_dll = ctypes.CDLL(dll_path)
     
@@ -48,7 +49,7 @@ def virus_siganture_detection(path,threats_counter,threats_list):
         threats_array = (Threat * threats_counter[0])()
 
         #  dll func
-        VSD_Func (path.encode(),threats_array ,b'./Data/VS1.db',b'./Data/VS2.db',ctypes.byref(counter))
+        VSD_Func (normalized_path.encode(),threats_array ,b'./Data/VS1.db',b'./Data/VS2.db',ctypes.byref(counter))
         
         threats_counter[0] = counter.value
         
@@ -73,12 +74,12 @@ def windows_malware_detection(exe_files,threats_counter,threats_list):
     print(exe_files)
     if isinstance(exe_files, list):
         for path in exe_files:
-            file_path,file_type = PE_ML.multi_models_predict_exe(path)
+            file_path,file_type = PE_ML.multi_models_predict_exe(os.path.normpath(path))
             if file_type != 0:
                 t_counter += 1
                 threats_list.append(file_path,exe_types[file_type])
     else:
-        file_path,file_type = PE_ML.multi_models_predict_exe(exe_files)
+        file_path,file_type = PE_ML.multi_models_predict_exe(os.path.normpath(exe_files))
         if file_type != 0:
             t_counter += 1
             threats_list.append(file_path,exe_types[file_type])
@@ -151,6 +152,8 @@ class Scan_Worker(QObject):
 def start_scan(path,window):
     global thread, worker
     window.scanBtn.hide()
+    window.movie.start()
+    window.loading.show()
     worker = Scan_Worker(path,window)
     thread = QThread()
     worker.moveToThread(thread)
@@ -159,6 +162,8 @@ def start_scan(path,window):
     worker.finished.connect(thread.quit)
     thread.finished.connect(lambda: print("Thread finished"))
     thread.finished.connect(lambda: window.scanBtn.setEnabled(True))
+    thread.finished.connect(lambda: window.loading.hide())
+    thread.finished.connect(lambda: window.movie.stop())
     thread.finished.connect(lambda: window.scanBtn.show())
     worker.progress.connect(report_progress)
     thread.finished.connect(lambda:VSD_threats_handle(window,worker.VSD_threat_list,worker.WMD_threat_list))

@@ -397,10 +397,52 @@ class Ui_AV_App(object):
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
-        spacerItem4 = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem4, 0, 1, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(184, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem5, 1, 0, 1, 1)
+        self.ScanLayout = QtWidgets.QHBoxLayout()
+        self.ScanLayout.setObjectName("ScanLayout")
+        spacerItem4 = QtWidgets.QSpacerItem(145, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.ScanLayout.addItem(spacerItem4)
+        self.scanBtn = QtWidgets.QPushButton(self.scansPage)
+        self.scanBtn.setMinimumSize(QtCore.QSize(109, 40))
+        self.scanBtn.setMaximumSize(QtCore.QSize(109, 40))
+        font = QtGui.QFont()
+        font.setFamily("Alata")
+        font.setPointSize(16)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        font.setStyleStrategy(QtGui.QFont.PreferDefault)
+        self.scanBtn.setFont(font)
+        self.scanBtn.setStyleSheet("QPushButton{\n"
+"    font: 16pt \"Alata\";\n"
+"    color: rgb(0, 62, 41);\n"
+"    padding: 2px 5px;\n"
+"    margin: 0;\n"
+"    background: none;\n"
+"    text-align: center middle;\n"
+"    background-color: rgb(97, 151, 132);\n"
+"    border-top-left-radius: 10px;\n"
+"    border-bottom-left-radius: 10px;\n"
+"    border-top-right-radius: 10px;\n"
+"    border-bottom-right-radius: 10px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"background:rgba(75, 117, 102, 220)\n"
+"    }\n"
+"")
+        self.scanBtn.setIconSize(QtCore.QSize(0, 0))
+        self.scanBtn.setCheckable(True)
+        self.scanBtn.setFlat(False)
+        self.scanBtn.setObjectName("scanBtn")
+        self.ScanLayout.addWidget(self.scanBtn)
+        spacerItem5 = QtWidgets.QSpacerItem(226, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.ScanLayout.addItem(spacerItem5)
+        self.gridLayout.addLayout(self.ScanLayout, 2, 0, 1, 3)
+        spacerItem6 = QtWidgets.QSpacerItem(184, 48, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem6, 1, 2, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(184, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem7, 1, 0, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem8, 0, 1, 1, 1)
         self.filePathWidget = QtWidgets.QWidget(self.scansPage)
         self.filePathWidget.setMinimumSize(QtCore.QSize(521, 63))
         self.filePathWidget.setMaximumSize(QtCore.QSize(521, 4000))
@@ -472,50 +514,6 @@ class Ui_AV_App(object):
         self.folderPathBtn.setObjectName("folderPathBtn")
         self.filePathLayout.addWidget(self.folderPathBtn)
         self.gridLayout.addWidget(self.filePathWidget, 1, 1, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(184, 48, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem6, 1, 2, 1, 1)
-        self.ScanLayout = QtWidgets.QHBoxLayout()
-        self.ScanLayout.setObjectName("ScanLayout")
-        spacerItem7 = QtWidgets.QSpacerItem(145, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.ScanLayout.addItem(spacerItem7)
-        self.scanBtn = QtWidgets.QPushButton(self.scansPage)
-        self.scanBtn.setMinimumSize(QtCore.QSize(109, 40))
-        self.scanBtn.setMaximumSize(QtCore.QSize(109, 40))
-        font = QtGui.QFont()
-        font.setFamily("Alata")
-        font.setPointSize(16)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(50)
-        font.setStyleStrategy(QtGui.QFont.PreferDefault)
-        self.scanBtn.setFont(font)
-        self.scanBtn.setStyleSheet("QPushButton{\n"
-"    font: 16pt \"Alata\";\n"
-"    color: rgb(0, 62, 41);\n"
-"    padding: 2px 5px;\n"
-"    margin: 0;\n"
-"    background: none;\n"
-"    text-align: center middle;\n"
-"    background-color: rgb(97, 151, 132);\n"
-"    border-top-left-radius: 10px;\n"
-"    border-bottom-left-radius: 10px;\n"
-"    border-top-right-radius: 10px;\n"
-"    border-bottom-right-radius: 10px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"background:rgba(75, 117, 102, 220)\n"
-"    }\n"
-"")
-        self.scanBtn.setIconSize(QtCore.QSize(0, 0))
-        self.scanBtn.setCheckable(True)
-        self.scanBtn.setFlat(False)
-        self.scanBtn.setObjectName("scanBtn")
-        self.ScanLayout.addWidget(self.scanBtn)
-        spacerItem8 = QtWidgets.QSpacerItem(226, 58, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.ScanLayout.addItem(spacerItem8)
-        self.gridLayout.addLayout(self.ScanLayout, 2, 0, 1, 3)
-        spacerItem9 = QtWidgets.QSpacerItem(20, 168, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem9, 3, 1, 1, 1)
         self.scanInfo = QtWidgets.QWidget(self.scansPage)
         self.scanInfo.setMinimumSize(QtCore.QSize(856, 201))
         self.scanInfo.setMaximumSize(QtCore.QSize(856, 201))
@@ -574,9 +572,18 @@ class Ui_AV_App(object):
 "border-bottom-right-radius: 10px;\n"
 "border-bottom-left-radius: 10px")
         self.numScanned.setObjectName("numScanned")
-        self.gridLayout.addWidget(self.scanInfo, 4, 0, 1, 3)
+        self.gridLayout.addWidget(self.scanInfo, 5, 0, 1, 3)
+        self.loadingLabel = QtWidgets.QLabel(self.scansPage)
+        self.loadingLabel.setMinimumSize(QtCore.QSize(110, 100))
+        self.loadingLabel.setText("")
+        self.loadingLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.loadingLabel.setObjectName("loadingLabel")
+        self.gridLayout.addWidget(self.loadingLabel, 3, 1, 1, 1)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem9, 4, 1, 1, 1)
         self.filePathWidget.raise_()
         self.scanInfo.raise_()
+        self.loadingLabel.raise_()
         self.stackedWidget.addWidget(self.scansPage)
         self.helpPage = QtWidgets.QWidget()
         self.helpPage.setObjectName("helpPage")
@@ -757,8 +764,7 @@ class Ui_AV_App(object):
         AV_App.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(AV_App)
-        self.stackedWidget.setCurrentIndex(3)
-        self.exitBtn.clicked.connect(AV_App.close) # type: ignore
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(AV_App)
 
     def retranslateUi(self, AV_App):
@@ -775,10 +781,10 @@ class Ui_AV_App(object):
         self.typeLabel.setText(_translate("AV_App", "Type"))
         self.StatusLabel.setText(_translate("AV_App", "Status"))
         self.sizeLabel.setText(_translate("AV_App", "Actions"))
-        self.filePath.setText(_translate("AV_App", "File / Folder Path..."))
-        self.folderPathBtn.setToolTip(_translate("AV_App", "Choose Path..."))
         self.scanBtn.setToolTip(_translate("AV_App", "Start Scan"))
         self.scanBtn.setText(_translate("AV_App", "Scan"))
+        self.filePath.setText(_translate("AV_App", "File / Folder Path..."))
+        self.folderPathBtn.setToolTip(_translate("AV_App", "Choose Path..."))
         self.scanTitle.setText(_translate("AV_App", "Scan Result"))
         self.scanTime.setText(_translate("AV_App", "Last Scan Time: "))
         self.numThreats.setText(_translate("AV_App", "0 Threats Found"))

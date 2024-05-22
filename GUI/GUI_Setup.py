@@ -2,8 +2,11 @@ from .AV_GUI import Ui_AV_App
 from PyQt5.QtCore import pyqtSignal,Qt
 from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileDialog,QVBoxLayout
 from PyQt5.uic import loadUi
+from PyQt5.QtGui import QMovie
 import sys,os,ctypes,threading
 #from . import AV_Icons_rc
+
+
 
 def restore_file(widget):
     dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
@@ -77,11 +80,26 @@ class AV_Application(QMainWindow):
         self.ui.scanBtn.hide()
         self.scanBtn = self.ui.scanBtn
         self.filePath = self.ui.filePath
+        self.loading = self.ui.loadingLabel
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        gif_path = os.path.join(script_dir, "Dual_Ring.gif")
+        if not os.path.exists(gif_path):
+            print(f"Error: The file {gif_path} does not exist.")
+        self.movie = QMovie(gif_path)
+        if not self.movie.isValid():
+            print(f"Error: The movie {gif_path} is not valid.")
+        self.loading.setMovie(self.movie)
+        self.loading.hide()
         self.container_layout = QVBoxLayout(self.ui.filesResults)
         self.container_layout.setAlignment(Qt.AlignTop)
         self.container_layout.setContentsMargins(0, 0, 0, 0)
         self.container_layout.setSpacing(5)
+        self.ui.exitBtn.clicked.connect(self.quit) # type: ignore
 
+    def quit(self):
+        QApplication.instance().quit()  
+        sys.exit(0)   
+    
     def add_to_scorll_area(self,widget):
          self.container_layout.insertWidget(0, widget)
          self.container_layout.update()

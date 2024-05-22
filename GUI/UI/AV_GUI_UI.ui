@@ -591,7 +591,7 @@ QPushButton:hover {
           <number>0</number>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="threatsPage">
           <property name="sizePolicy">
@@ -907,15 +907,108 @@ background-color: transparent;</string>
            <property name="spacing">
             <number>0</number>
            </property>
-           <item row="0" column="1">
-            <spacer name="verticalSpacer_3">
+           <item row="2" column="0" colspan="3">
+            <layout class="QHBoxLayout" name="ScanLayout">
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>145</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="scanBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>109</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>109</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Alata</family>
+                 <pointsize>16</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                 <stylestrategy>PreferDefault</stylestrategy>
+                </font>
+               </property>
+               <property name="toolTip">
+                <string>Start Scan</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	font: 16pt &quot;Alata&quot;;
+	color: rgb(0, 62, 41);
+	padding: 2px 5px;
+	margin: 0;
+	background: none;
+	text-align: center middle;
+	background-color: rgb(97, 151, 132);
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+QPushButton:hover {
+background:rgba(75, 117, 102, 220)
+	}
+</string>
+               </property>
+               <property name="text">
+                <string>Scan</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>226</width>
+                 <height>58</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="2">
+            <spacer name="horizontalSpacer_8">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>20</width>
-               <height>68</height>
+               <width>184</width>
+               <height>48</height>
               </size>
              </property>
             </spacer>
@@ -929,6 +1022,19 @@ background-color: transparent;</string>
               <size>
                <width>184</width>
                <height>58</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="1">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>68</height>
               </size>
              </property>
             </spacer>
@@ -1093,126 +1199,7 @@ background:rgba(75, 117, 102, 220)
              </layout>
             </widget>
            </item>
-           <item row="1" column="2">
-            <spacer name="horizontalSpacer_8">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>184</width>
-               <height>48</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="2" column="0" colspan="3">
-            <layout class="QHBoxLayout" name="ScanLayout">
-             <item>
-              <spacer name="horizontalSpacer_9">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>145</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="scanBtn">
-               <property name="minimumSize">
-                <size>
-                 <width>109</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>109</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Alata</family>
-                 <pointsize>16</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <stylestrategy>PreferDefault</stylestrategy>
-                </font>
-               </property>
-               <property name="toolTip">
-                <string>Start Scan</string>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
-	font: 16pt &quot;Alata&quot;;
-	color: rgb(0, 62, 41);
-	padding: 2px 5px;
-	margin: 0;
-	background: none;
-	text-align: center middle;
-	background-color: rgb(97, 151, 132);
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-QPushButton:hover {
-background:rgba(75, 117, 102, 220)
-	}
-</string>
-               </property>
-               <property name="text">
-                <string>Scan</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="checkable">
-                <bool>true</bool>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_11">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>226</width>
-                 <height>58</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="3" column="1">
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>168</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="4" column="0" colspan="3">
+           <item row="5" column="0" colspan="3">
             <widget class="QWidget" name="scanInfo" native="true">
              <property name="minimumSize">
               <size>
@@ -1344,10 +1331,41 @@ border-bottom-left-radius: 10px</string>
              </widget>
             </widget>
            </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="loadingLabel">
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
           <zorder>filePathWidget</zorder>
           <zorder>scanInfo</zorder>
           <zorder>verticalSpacer_3</zorder>
+          <zorder>loadingLabel</zorder>
+          <zorder>verticalSpacer</zorder>
          </widget>
          <widget class="QWidget" name="helpPage">
           <layout class="QGridLayout" name="gridLayout_5">
