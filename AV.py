@@ -77,12 +77,12 @@ def windows_malware_detection(exe_files,threats_counter,threats_list):
             file_path,file_type = PE_ML.multi_models_predict_exe(os.path.normpath(path))
             if file_type != 0:
                 t_counter += 1
-                threats_list.append(file_path,exe_types[file_type])
+                threats_list.append((file_path,exe_types[file_type]))
     else:
         file_path,file_type = PE_ML.multi_models_predict_exe(os.path.normpath(exe_files))
         if file_type != 0:
             t_counter += 1
-            threats_list.append(file_path,exe_types[file_type])
+            threats_list.append((file_path,exe_types[file_type]))
 
     threats_counter[0] = t_counter
     print("Threats VSD: ",threats_counter[0])
