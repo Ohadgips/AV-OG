@@ -54,7 +54,7 @@ VirusSignature::VirusSignature(const char* db1_path,const char* db2_path)
     DB1 = ConnectToDB(db1_path);
     DB2 = ConnectToDB(db2_path);
     VirusSign = SVList(DB1);
-    vector <string> VirusSign2 = SVList(DB2);
+    VirusSign2 = SVList(DB2);
 
     VirusSign.insert(VirusSign.end(), VirusSign2.begin(), VirusSign2.end());
     cout << "Finished VirusSign Creation" << endl;
@@ -191,9 +191,15 @@ const char* VirusSignature::SearchInDB(const char* md5hashstring)
             cout << "Found Virus" << endl;
         }
     }
+    for (const auto& element : VirusSign2) {
+        if (element == filehash) {
+            virus_type = SpecifyVirus(md5hashstring, filehash.c_str());
+            cout << "Found Virus" << endl;
+        }
+    }
     return virus_type;
 }
-// use thread to check it and make it kind of recursive
+// recursive func that make sure every file is checked individually
 void VirusSignature::processFiles(string path_root, vector<threat>& threats) {
     const char* virus_type = nullptr;
     if (is_directory(path_root)) {

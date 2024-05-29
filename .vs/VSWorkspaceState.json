@@ -3,10 +3,8 @@
     "",
     "\\GUI",
     "\\VirusHandle",
-    "\\VirusSignatureDetection",
-    "\\VirusSignatureDetection\\Virus_Signature_Detection",
     "\\WindowsMalwareDetection"
   ],
-  "SelectedNode": "\\AV.py",
+  "SelectedNode": "\\GUI\\GUI_Setup.py",
   "PreviewInSolutionExplorer": false
 }

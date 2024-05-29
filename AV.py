@@ -5,7 +5,6 @@ from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
 import ctypes,sqlite3
 import numpy as np 
-
 class Threat(ctypes.Structure):
     _fields_ = [("filepathname", ctypes.c_char_p), ("threattype", ctypes.c_char_p)]
 
@@ -38,9 +37,12 @@ def virus_siganture_detection(path,threats_counter,threats_list):
     try:
         # make sure there is not error with the paths
         normalized_path = os.path.normpath(path)
-        dll_path = os.path.abspath(r'./DLLs/Virus_Signature_Detection.dll')
+        DIRNAME = os.path.dirname(os.path.abspath(__file__))
+        print(DIRNAME)
+        dll_path = os.path.abspath(DIRNAME + '\\DLLs\\Virus_Signature_Detection.dll')
+        dll_path = os.path.normpath(dll_path)
+        print(dll_path)
         VSD_dll = ctypes.CDLL(dll_path)
-    
         VSD_Func = VSD_dll.SearchForThreat
 
         VSD_Func.argtypes = [ctypes.c_char_p,ctypes.POINTER(Threat) ,ctypes.c_char_p ,ctypes.c_char_p, ctypes.POINTER(ctypes.c_int)]
@@ -49,7 +51,7 @@ def virus_siganture_detection(path,threats_counter,threats_list):
         threats_array = (Threat * threats_counter[0])()
 
         #  dll func
-        VSD_Func (normalized_path.encode(),threats_array ,b'./Data/VS1.db',b'./Data/VS2.db',ctypes.byref(counter))
+        VSD_Func (normalized_path.encode(),threats_array ,DIRNAME.encode() + b'.\\Data\\VS1.db',DIRNAME.encode() + b'.\\Data\\VS2.db',ctypes.byref(counter))
         
         threats_counter[0] = counter.value
         
@@ -180,7 +182,8 @@ def report_progress(n):
 
 
 if __name__ == "__main__":
-
+    DIRNAME = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(DIRNAME)
     app,window = GUI_Setup.start_GUI()
     #window.scanBtn.clicked.connect(lambda: scan_button(str(window.filePath.text()),window))
     window.scanBtn.clicked.connect(lambda: start_scan(str(window.filePath.text()),window))

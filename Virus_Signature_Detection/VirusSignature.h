@@ -75,6 +75,7 @@ class VirusSignature
 {
 	private:
 		vector <string> VirusSign;
+		vector <string> VirusSign2;
 		sqlite3* DB1;
 		sqlite3* DB2;
 
