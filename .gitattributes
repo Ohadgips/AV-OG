@@ -1,2 +1,1 @@
-* linguist-vendored
-*.DLLs linguist-vendored=false
+DLLs/* linguist-detectable=false
