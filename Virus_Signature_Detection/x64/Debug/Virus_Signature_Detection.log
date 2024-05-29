@@ -1,0 +1,6 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppClean.targets(77,5): warning : The process cannot access the file 'c:\users\user\documents\github\av_by_og\virussignaturedetection\virus_signature_detection\x64\debug\sqlite3.obj' because it is being used by another process.
+  sqlite3.c
+  VirusSignature.cpp
+C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\VirusSignature.cpp(232,48): warning C4101: 'e': unreferenced local variable
+     Creating library C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.lib and object C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.exp
+  Virus_Signature_Detection.vcxproj -> C:\Users\USER\Documents\GitHub\AV_by_OG\VirusSignatureDetection\Virus_Signature_Detection\x64\Debug\Virus_Signature_Detection.dll
