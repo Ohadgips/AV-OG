@@ -1,1 +1,1 @@
-*.dll linguist-language=C++
+.c++ linguist-detectable=false
