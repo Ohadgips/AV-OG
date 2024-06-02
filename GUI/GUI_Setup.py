@@ -184,10 +184,10 @@ class AV_Application(QMainWindow):
     
     def on_infoBtn_clicked(self):
         self.color_all_button_back()
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.stackedWidget.setCurrentIndex(3)
     def on_helpBtn_clicked(self):
         self.color_all_button_back()
-        self.ui.stackedWidget.setCurrentIndex(3)     
+        self.ui.stackedWidget.setCurrentIndex(2)     
 
     def on_filePathBtn_toggled(self):
         self.open_file_dialog()   
