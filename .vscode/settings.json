@@ -61,6 +61,9 @@
     "vector": "cpp",
     "xstring": "cpp",
     "iosfwd": "cpp",
-    "array": "cpp"
+    "array": "cpp",
+    "iostream": "cpp",
+    "chrono": "cpp",
+    "xlocale": "cpp"
   }
 }

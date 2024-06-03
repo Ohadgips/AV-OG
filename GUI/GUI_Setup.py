@@ -4,9 +4,6 @@ from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileD
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QMovie
 import sys,os,ctypes,threading
-#from . import AV_Icons_rc
-
-
 
 def restore_file(widget):
     dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
@@ -58,6 +55,7 @@ class Threat_UI(QWidget):
         window.add_to_scorll_area(self.widget)
         dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
         VH_dll = ctypes.CDLL(dll_path)
+        #if "Quarantine" not in file_name:
         Q_Func = VH_dll.quarantinefile
         Q_Func.restype = None
         Q_Func.argtypes = [ctypes.c_char_p];

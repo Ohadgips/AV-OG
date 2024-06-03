@@ -1,10 +1,9 @@
 from GUI import GUI_Setup
 from WindowsMalwareDetection import PE_ML
-import sys,os,threading,shutil,time,ctypes
+import sys,os,threading,time,ctypes
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
-import ctypes,sqlite3
-import numpy as np 
+import ctypes
 class Threat(ctypes.Structure):
     _fields_ = [("filepathname", ctypes.c_char_p), ("threattype", ctypes.c_char_p)]
 
