@@ -167,6 +167,7 @@ def start_scan(path,window):
     thread.finished.connect(lambda: window.loading.hide())
     thread.finished.connect(lambda: window.movie.stop())
     thread.finished.connect(lambda: window.scanBtn.show())
+    thread.finished.connect(lambda: window.on_theatsBtn_clicked())
     worker.progress.connect(report_progress)
     thread.finished.connect(lambda:VSD_threats_handle(window,worker.VSD_threat_list,worker.WMD_threat_list))
     worker.finished.connect(worker.deleteLater)

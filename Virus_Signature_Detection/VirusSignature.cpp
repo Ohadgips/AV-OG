@@ -290,7 +290,7 @@ extern "C" {
     }
 }
 
-/*
+/* For DLL Testing
 int main() {
 
     int Counter = 0;
