@@ -1,31 +1,37 @@
 
 #ifndef PATHDB_H
 #define PATHDB_H
-
+#include <locale>
+#include <codecvt>
 #include <sqlite3.h> 
 #include <string>
 #include <iostream>
-using namespace std;
+#include <vector> 
+#include <windows.h>
+
+
+
 class pathDB
 {
 	
 
 public:
-		
+	std::vector<char> WideCharToMultiByte(const wchar_t* wide_str);
+
 	pathDB();
 		 
 	int CreateTable();
 
-	void UpdateStatus(const char* path, const string &status);
+	bool UpdateStatus(const wchar_t* path, const std::string &status);
 		
-	void InsertPaths(const char* path, const char* newPath);
+	bool InsertPaths(const wchar_t* path, const wchar_t* newPath);
 
-	string GetFileNewPath(const char* path);
+	std::wstring GetFileNewPath(const wchar_t* path);
 
 	void close_DB();
 
-	bool ExistsInDB(const char* path);
-	
+	bool ExistsInDB(const wchar_t* path);
+		
 	~pathDB() {
 		if (DB) {
 			sqlite3_close(DB);

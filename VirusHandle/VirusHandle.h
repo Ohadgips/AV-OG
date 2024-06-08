@@ -12,9 +12,10 @@
 #include <vector>
 #include <sqlite3.h> 
 #include "pathDB.h"
-#pragma comment(lib, "Shlwapi.lib")
-using namespace std;
+#include <locale>
+#include <codecvt>
 namespace fs = std::filesystem;
+#pragma comment(lib, "Shlwapi.lib")
 
 
 
@@ -23,9 +24,9 @@ namespace fs = std::filesystem;
 #ifdef VIRUS_HANDLE_API
 extern "C" {
 #endif
-	__declspec(dllexport) void quarantinefile(const char* filePath);
-	__declspec(dllexport) void deletefile(const char* filepath);
-	__declspec(dllexport) void restorefile(const char* filepath);
+	__declspec(dllexport) void quarantinefile(const wchar_t* filePath);
+	__declspec(dllexport) void deletefile(const wchar_t* filepath);
+	__declspec(dllexport) void restorefile(const wchar_t* filepath);
 #ifdef VIRUS_HANDLE_API
 }
 #endif

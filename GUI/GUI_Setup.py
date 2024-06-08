@@ -10,12 +10,11 @@ def restore_file(widget):
     VH_dll = ctypes.CDLL(dll_path)
     widget.fileStatus.setText(str("Allowed"))
     Allow_Func = VH_dll.restorefile
-    Allow_Func.argtypes = [ctypes.c_char_p];
-    Allow_Func.restype = None
+    Allow_Func.argtypes = [ctypes.c_wchar_p]
         
     path = widget.fileName.text()
-    print(path)
-    Allow_Func(path.encode())
+    filpath_wchar = ctypes.c_wchar_p(path)
+    Allow_Func(filpath_wchar)
     widget.allowFileBtn.hide()
     widget.deleteFileBtn.hide()
     
@@ -24,11 +23,11 @@ def delete_file(widget):
     VH_dll = ctypes.CDLL(dll_path)
     widget.fileStatus.setText(str("Deleted"))
     Delete_Func = VH_dll.deletefile
-    Delete_Func.argtypes = [ctypes.c_char_p]
-    Delete_Func.restype = None
+    Delete_Func.argtypes = [ctypes.c_wchar_p]
         
     path = widget.fileName.text()
-    print(path)
+    filpath_wchar = ctypes.c_wchar_p(path)
+    Delete_Func(filpath_wchar)
     Delete_Func(path.encode())
     widget.allowFileBtn.hide()
     widget.deleteFileBtn.hide()
@@ -57,9 +56,10 @@ class Threat_UI(QWidget):
         VH_dll = ctypes.CDLL(dll_path)
         #if "Quarantine" not in file_name:
         Q_Func = VH_dll.quarantinefile
-        Q_Func.restype = None
-        Q_Func.argtypes = [ctypes.c_char_p];
-        Q_Func(file_name.encode())
+        
+        Q_Func.argtypes = [ctypes.c_wchar_p];
+        file_name_wchar = ctypes.c_wchar_p(file_name)
+        Q_Func(file_name_wchar)
         self.widget.allowFileBtn.clicked.connect(lambda: restore_file(self.widget))
         self.widget.deleteFileBtn.clicked.connect(lambda: delete_file(self.widget))
 

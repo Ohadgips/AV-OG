@@ -5,7 +5,7 @@ from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
 import ctypes
 class Threat(ctypes.Structure):
-    _fields_ = [("filepathname", ctypes.c_char_p), ("threattype", ctypes.c_char_p)]
+    _fields_ = [("filepathname", ctypes.c_wchar_p), ("threattype", ctypes.c_char_p)]
 
 def scan_time_and_date():
     today = datetime.now()
@@ -36,30 +36,31 @@ def virus_siganture_detection(path,threats_counter,threats_list):
     try:
         # make sure there is not error with the paths
         normalized_path = os.path.normpath(path)
+        print(normalized_path)
         DIRNAME = os.path.dirname(os.path.abspath(__file__))
-        print(DIRNAME)
         dll_path = os.path.abspath(DIRNAME + '\\DLLs\\Virus_Signature_Detection.dll')
         dll_path = os.path.normpath(dll_path)
-        print(dll_path)
         VSD_dll = ctypes.CDLL(dll_path)
         VSD_Func = VSD_dll.SearchForThreat
 
-        VSD_Func.argtypes = [ctypes.c_char_p,ctypes.POINTER(Threat) ,ctypes.c_char_p ,ctypes.c_char_p, ctypes.POINTER(ctypes.c_int)]
+        VSD_Func.argtypes = [ctypes.c_wchar_p,ctypes.POINTER(Threat) ,ctypes.c_char_p ,ctypes.c_char_p, ctypes.POINTER(ctypes.c_int)]
         counter = ctypes.c_int(0)
         print("files num: ",threats_counter[0])
         threats_array = (Threat * threats_counter[0])()
+        path_wchar = ctypes.c_wchar_p(normalized_path)
 
         #  dll func
-        VSD_Func (normalized_path.encode(),threats_array ,DIRNAME.encode() + b'.\\Data\\VS1.db',DIRNAME.encode() + b'.\\Data\\VS2.db',ctypes.byref(counter))
+        VSD_Func (path_wchar,threats_array ,DIRNAME.encode() + b'.\\Data\\VS1.db',DIRNAME.encode() + b'.\\Data\\VS2.db',ctypes.byref(counter))
         
         threats_counter[0] = counter.value
         
         for i in range(threats_counter[0]):
             threat = threats_array[i]
             if threat.filepathname:
-                filepathname = threat.filepathname.decode('utf-8')
+                filepathname = threat.filepathname
                 threattype = threat.threattype.decode('utf-8')
                 threats_list.append((filepathname, threattype))
+                print("file: ",(filepathname, threattype))
 
         if threats_list:
             for threat in threats_list:

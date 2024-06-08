@@ -1,36 +1,14 @@
 #include "VirusHandle.h"
 #include <filesystem>
-using namespace std;
 namespace fs = std::filesystem;
 
-wstring stringToWChar(const std::string& str)
-{
-    // calculate the buffer size
-    int bufferSize = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);
-    // error 
-    if (bufferSize == 0)
-    {
-        std::cerr << "error" << std::endl;
-        return L"";
-    }
-
-    std::wstring wideStr(bufferSize, L'\0');
-
-    if (MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, &wideStr[0], bufferSize) == 0)
-    {
-        std::cerr << "error" << std::endl;
-        return L"";
-    }
-
-    wideStr.resize(bufferSize - 1);
-    return wideStr;
-
-}
 extern "C" {
-    __declspec(dllexport) void quarantinefile(const char* filePath) {
-
-        wstring widepath = stringToWChar(string(filePath));
-        LPWSTR LPwidepath = const_cast<LPWSTR>(widepath.c_str());
+    __declspec(dllexport) void quarantinefile(const wchar_t* filePath) {
+        
+        SetConsoleOutputCP(CP_UTF8);
+        std::locale::global(std::locale("en_US.UTF-8"));
+        
+        LPWSTR LPwidepath = const_cast<LPWSTR>(filePath);
 
         wchar_t quarantineDir[MAX_PATH];
         wcscpy_s(quarantineDir, MAX_PATH, L"Quarantine");
@@ -48,12 +26,12 @@ extern "C" {
         PathCombine(quarantinedFilePath, quarantineDir, fileName);
 
         if (!MoveFile(LPwidepath, quarantinedFilePath)) {
-            wcout << L"Error moving file to quarantine." << endl;
+            std::wcout << L"Error moving file to quarantine..." << std::endl;
         }
 
 
-        wstring np(quarantinedFilePath);
-        string new_path(np.begin(), np.end());
+        std::wstring np(quarantinedFilePath);
+        std::wstring new_path(np.begin(), np.end());
         fs::path new_relativePath(new_path);
         fs::path new_fullPath = fs::absolute(new_relativePath);
 
@@ -62,11 +40,12 @@ extern "C" {
         Database.CreateTable();
 
         if (!Database.ExistsInDB(filePath))
-            Database.InsertPaths(filePath, new_fullPath.string().c_str());
+            Database.InsertPaths(filePath, new_fullPath.wstring().c_str());
         else
             Database.UpdateStatus(filePath, "Quarantined");
+        Database.close_DB();
 
-        wcout << L" File quarantined successfully: " << quarantinedFilePath << endl;
+        std::wcout << L" File quarantined successfully: " << quarantinedFilePath << std::endl;
     }
 
 
@@ -74,45 +53,56 @@ extern "C" {
 
 extern "C" {
 
-    __declspec(dllexport) void deletefile(const char* filepath)
+    __declspec(dllexport) void deletefile(const wchar_t* filepath)
     {
-        cout << "File deleted: " << filepath << endl;
+        SetConsoleOutputCP(CP_UTF8);
+        std::locale::global(std::locale("en_US.UTF-8"));
+
+        std::wcout << L"File deleted: " << filepath << std::endl;
         pathDB Database = pathDB();
-        string new_path = Database.GetFileNewPath(filepath);
-        cout << "File deleted: " << new_path << endl;
+        std::wstring new_path = Database.GetFileNewPath(filepath);
+        std::wcout << L"File deleted: " << new_path << std::endl;
 
         // deletes the file if it exists
-        int result = remove(new_path.c_str());
+        int result = fs::remove(new_path.c_str());
 
         // check if file has been deleted successfully
         if (result != 0) {
-            cerr << "File not deleted";
+            std::wcerr << "File not deleted";
         }
         else {
             Database.UpdateStatus(filepath, "Deleted");
-            cout << "File deleted successfully";
+            std::wcout << "File deleted successfully";
         }
+        Database.close_DB();
+
     }
 }
 extern "C" {
-    __declspec(dllexport) void restorefile(const char* filepath)
+    __declspec(dllexport) void restorefile(const wchar_t* filepath)
     {
-        cout << "File restored: " << filepath << endl;
+        SetConsoleOutputCP(CP_UTF8);
+        std::locale::global(std::locale("en_US.UTF-8"));
+
+        std::wcout << L"File restored: " << filepath << std::endl;
         pathDB Database = pathDB();
-        string new_path = Database.GetFileNewPath(filepath);
+        std::wstring new_path = Database.GetFileNewPath(filepath);
+        std::vector<char> multi_byte_path = Database.WideCharToMultiByte(filepath);
+        std::vector<char> multi_byte_newpath = Database.WideCharToMultiByte(new_path.c_str());
 
         // deletes the file if it exists
         FILE* quarantinedFile = nullptr;
-        errno_t err = fopen_s(&quarantinedFile, new_path.c_str(), "rb");
+        errno_t err = fopen_s(&quarantinedFile, multi_byte_newpath.data(), "rb");
         if (err != 0) {
-            std::cerr << "Error opening quarantined file: " << new_path << std::endl;
+            std::wcerr << L"Error opening quarantined file: " << new_path << std::endl;
             return;
         }
 
         FILE* restoreFile = nullptr;
-        err = fopen_s(&restoreFile, filepath, "wb");
+        err = fopen_s(&restoreFile, multi_byte_path.data(), "wb");
         if (err != 0) {
-            std::cerr << "Error opening quarantined file: " << new_path << std::endl;
+            std::wcerr << L"Error opening quarantined file: " << new_path << std::endl;
+            fclose(quarantinedFile);
             return;
         }
 
@@ -125,19 +115,22 @@ extern "C" {
         fclose(quarantinedFile);
         fclose(restoreFile);
 
-        remove(new_path.c_str());
+        fs::remove(new_path.c_str());
         Database.UpdateStatus(filepath, "Restored");
+        Database.close_DB();
+
 
     }
 }
 
-/*
+/* For Testing
 int main()
 {
-    const char* str = "C:\\Users\\USER\\Downloads\\1555.jpg";
+    const wchar_t* str = L"C:\\Users\\USER\\Downloads\\מבחן\\שלום.docx";
     //quarantinefile(str);
     //restorefile(str);
     deletefile(str);
     
-}*/
+}
+*/
 
