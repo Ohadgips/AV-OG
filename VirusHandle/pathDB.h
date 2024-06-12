@@ -24,9 +24,11 @@ public:
 
 	bool UpdateStatus(const wchar_t* path, const std::string &status);
 		
-	bool InsertPaths(const wchar_t* path, const wchar_t* newPath);
+	bool InsertPaths(const wchar_t* path, const wchar_t* type, const wchar_t* newPath);
 
 	std::wstring GetFileNewPath(const wchar_t* path);
+	
+	void GetQuarantinedFiles(std::vector<std::pair<wchar_t*, wchar_t*>>& paths);
 
 	void close_DB();
 

@@ -3,7 +3,7 @@
 namespace fs = std::filesystem;
 
 extern "C" {
-    __declspec(dllexport) void quarantinefile(const wchar_t* filePath) {
+    __declspec(dllexport) void quarantinefile(const wchar_t* filePath, const wchar_t* type) {
         
         SetConsoleOutputCP(CP_UTF8);
         std::locale::global(std::locale("en_US.UTF-8"));
@@ -40,7 +40,7 @@ extern "C" {
         Database.CreateTable();
 
         if (!Database.ExistsInDB(filePath))
-            Database.InsertPaths(filePath, new_fullPath.wstring().c_str());
+            Database.InsertPaths(filePath ,type ,new_fullPath.wstring().c_str());
         else
             Database.UpdateStatus(filePath, "Quarantined");
         Database.close_DB();
@@ -123,14 +123,46 @@ extern "C" {
     }
 }
 
+extern "C" {
+    __declspec(dllexport) void getquarantinedfiles(wchar_t*** files, int* count)
+    {
+        SetConsoleOutputCP(CP_UTF8);
+        std::locale::global(std::locale("en_US.UTF-8"));
+        std::vector<std::pair<wchar_t*, wchar_t*>> Qfiles;
+
+        pathDB Database = pathDB();
+        Database.GetQuarantinedFiles(Qfiles);         
+
+        *count = Qfiles.size();
+        *files = new wchar_t* [2 * (*count)];
+        for (int i = 0; i < *count; ++i) {
+            (*files)[2 * i] = Qfiles[i].first;
+            (*files)[2 * i + 1] = Qfiles[i].second;
+            std::wcout << L"add path: " << Qfiles[i].first << std::endl;
+            std::wcout << L"add type: " << Qfiles[i].second << std::endl;
+        }
+        Database.close_DB();
+
+    }
+}
+
 /* For Testing
 int main()
 {
-    const wchar_t* str = L"C:\\Users\\USER\\Downloads\\מבחן\\שלום.docx";
+    wchar_t** chars;
+    int count;
     //quarantinefile(str);
     //restorefile(str);
-    deletefile(str);
-    
+    //deletefile(str);
+    getquarantinedfiles(&chars, &count);
+    if (chars) {
+        for (int i = 0; i < count; ++i) {
+            const wchar_t* original_path = chars[2 * i];
+            const wchar_t* file_type = chars[2 * i + 1];
+            std::wcout << L"Original Path: " << original_path << L", Type: " << file_type << std::endl;
+        }
+    }
 }
 */
+
 

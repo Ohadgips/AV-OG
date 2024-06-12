@@ -24,6 +24,7 @@ void pathDB::close_DB(){
 int pathDB::CreateTable() {
     std::string sql = "CREATE TABLE IF NOT EXISTS PATHS("  \
         "ORIGINAL_PATH   TEXT    NOT NULL," \
+        "TYPE            TEXT    NOT NULL," \
         "NEW_PATH        TEXT    NOT NULL,"\
         "STATUS          TEXT    NOT NULL,"\
         "PRIMARY KEY(ORIGINAL_PATH, NEW_PATH)"\
@@ -86,15 +87,16 @@ bool pathDB::ExistsInDB(const wchar_t* path) {
 
 
 }
-bool pathDB::InsertPaths(const wchar_t* path, const wchar_t* newPath)
+bool pathDB::InsertPaths(const wchar_t* path, const wchar_t* type,const wchar_t* newPath)
 {
     //char* messaggeError;
     sqlite3_stmt* statement;
     std::vector<char> multi_byte_path = WideCharToMultiByte(path);
     std::vector<char> multi_byte_newpath = WideCharToMultiByte(newPath);
+    std::vector<char> multi_byte_type = WideCharToMultiByte(type);
 
     int res = 0;
-    const char* sql = "INSERT OR IGNORE INTO PATHS (ORIGINAL_PATH,NEW_PATH,STATUS) VALUES(?,?,?);";
+    const char* sql = "INSERT OR IGNORE INTO PATHS (ORIGINAL_PATH,TYPE,NEW_PATH,STATUS) VALUES(?,?,?,?);";
 
     res = sqlite3_prepare_v2(DB, sql, -3, &statement, 0);
     if (res != SQLITE_OK) {
@@ -102,8 +104,9 @@ bool pathDB::InsertPaths(const wchar_t* path, const wchar_t* newPath)
         return false;
     }
     sqlite3_bind_text(statement, 1, multi_byte_path.data(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(statement, 2, multi_byte_newpath.data(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(statement, 3, "Quarantined", -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 2, multi_byte_type.data(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 3, multi_byte_newpath.data(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 4, "Quarantined", -1, SQLITE_STATIC);
 
     res = sqlite3_step(statement);
     sqlite3_finalize(statement);
@@ -185,4 +188,56 @@ std::wstring pathDB::GetFileNewPath(const wchar_t* path)
     }
     sqlite3_finalize(statement);
     return new_path;
+}
+
+void pathDB::GetQuarantinedFiles(std::vector<std::pair< wchar_t*, wchar_t* >>& paths)
+{
+    //char* messaggeError;
+
+    sqlite3_stmt* statement;
+    wchar_t* path;
+    wchar_t* type;
+    int res = 0;
+    const char* sql = "SELECT ORIGINAL_PATH,TYPE FROM PATHS WHERE STATUS = ?;";
+
+    res = sqlite3_prepare_v2(DB, sql, -1, &statement, 0);
+
+    if (res != SQLITE_OK) {
+        std::wcerr << L"Error preparing statement " << sqlite3_errmsg(DB) << std::endl;
+    }
+    sqlite3_bind_text(statement, 1, "Quarantined", -1, SQLITE_STATIC);
+
+    while ((res = sqlite3_step(statement)) == SQLITE_ROW) {
+        const unsigned char* path_result = sqlite3_column_text(statement, 0);
+        std::wcout << L"getting path Successfully!" << std::endl;
+        
+        if (path_result) {
+            int utf16_length = MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char*>(path_result), -1, nullptr, 0);
+            if (utf16_length > 0) {
+                wchar_t* utf16_buffer = new wchar_t[utf16_length];
+                MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char*>(path_result), -1, utf16_buffer, utf16_length);
+                path = utf16_buffer;
+                std::wcout << L"getting path: " << path << std::endl;
+
+            }
+        }
+        const unsigned char* type_result = sqlite3_column_text(statement, 1);
+
+        if (type_result) {
+            int utf16_length = MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char*>(type_result), -1, nullptr, 0);
+            if (utf16_length > 0) {
+                wchar_t* utf16_buffer = new wchar_t[utf16_length];
+                MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char*>(type_result), -1, utf16_buffer, utf16_length);
+                type = utf16_buffer;
+                std::wcout << L"getting type: " << type << std::endl;
+            }
+        }
+        if (path_result && type_result) {
+
+            paths.emplace_back(path, type);
+        }
+
+    }
+
+    sqlite3_finalize(statement);
 }

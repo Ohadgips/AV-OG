@@ -24,9 +24,11 @@ namespace fs = std::filesystem;
 #ifdef VIRUS_HANDLE_API
 extern "C" {
 #endif
-	__declspec(dllexport) void quarantinefile(const wchar_t* filePath);
+	__declspec(dllexport) void quarantinefile(const wchar_t* filePath, const wchar_t* type);
 	__declspec(dllexport) void deletefile(const wchar_t* filepath);
 	__declspec(dllexport) void restorefile(const wchar_t* filepath);
+	__declspec(dllexport) void getquarantinedfiles(wchar_t*** files, int* count);
+
 #ifdef VIRUS_HANDLE_API
 }
 #endif

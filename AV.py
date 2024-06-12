@@ -186,6 +186,7 @@ if __name__ == "__main__":
     DIRNAME = os.path.dirname(os.path.abspath(__file__))
     os.chdir(DIRNAME)
     app,window = GUI_Setup.start_GUI()
+    GUI_Setup.get_and_set_all_quarantined_files(window)
     #window.scanBtn.clicked.connect(lambda: scan_button(str(window.filePath.text()),window))
     window.scanBtn.clicked.connect(lambda: start_scan(str(window.filePath.text()),window))
 

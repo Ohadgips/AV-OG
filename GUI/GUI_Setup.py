@@ -43,6 +43,9 @@ def get_default_download_folder():
     else:
         return home_dir
 
+
+
+
 class Threat_UI(QWidget):
     
     def __init__(self,window,file_name,filetype):
@@ -57,13 +60,29 @@ class Threat_UI(QWidget):
         #if "Quarantine" not in file_name:
         Q_Func = VH_dll.quarantinefile
         
-        Q_Func.argtypes = [ctypes.c_wchar_p];
+        Q_Func.argtypes = [ctypes.c_wchar_p,ctypes.c_wchar_p]
         file_name_wchar = ctypes.c_wchar_p(file_name)
-        Q_Func(file_name_wchar)
+        file_type_wchar = ctypes.c_wchar_p(filetype)
+
+        Q_Func(file_name_wchar,file_type_wchar)
         self.widget.allowFileBtn.clicked.connect(lambda: restore_file(self.widget))
         self.widget.deleteFileBtn.clicked.connect(lambda: delete_file(self.widget))
-
-   
+    
+    @classmethod
+    def init_text_setup_only(cls, window, file_name, filetype):
+        instance = cls.__new__(cls) 
+        instance.restore_setup(window, file_name, filetype)
+        return instance
+    
+    def restore_setup(self,window,file_name,filetype):
+        ui_path = os.path.abspath(r'./GUI/UI/File_Results.ui')        
+        self.widget = loadUi(ui_path)
+        self.widget.fileName.setText(str(file_name))
+        self.widget.fileType.setText(str(filetype))
+        self.widget.fileStatus.setText("Quarantined")
+        window.add_to_scorll_area(self.widget)
+        self.widget.allowFileBtn.clicked.connect(lambda: restore_file(self.widget))
+        self.widget.deleteFileBtn.clicked.connect(lambda: delete_file(self.widget))
 
 
 class AV_Application(QMainWindow):
@@ -197,7 +216,25 @@ class AV_Application(QMainWindow):
     def scan_result_update(self,time,threats,scanned):
         self.ui.scanTime.setText("Last Scan Time: " + time)
         self.ui.numScanned.setText(scanned + " Files Scanned")
-        self.ui.numThreats.setText(threats + " Threats Found")        
+        self.ui.numThreats.setText(threats + " Threats Found")
+    
+            
+def get_and_set_all_quarantined_files(window):
+        dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')
+        VH_dll = ctypes.CDLL(dll_path)
+        Q_Func = VH_dll.getquarantinedfiles
+        Q_Func.argtypes = [
+        ctypes.POINTER(ctypes.POINTER(ctypes.c_wchar_p)),
+        ctypes.POINTER(ctypes.c_int)]
+        files = ctypes.POINTER(ctypes.c_wchar_p)()
+        count = ctypes.c_int()
+        Q_Func(ctypes.byref(files), ctypes.byref(count))
+        if files:
+            for i in range(count.value):
+                original_path = files[2 * i]
+                file_type = files[2 * i + 1]
+                Threat_UI.init_text_setup_only(window,original_path,file_type)
+                print(f'Original Path: {original_path}, Type: {file_type}')
 
 def start_GUI():
     app = QApplication(sys.argv)
