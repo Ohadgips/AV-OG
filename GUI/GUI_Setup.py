@@ -3,7 +3,7 @@ from PyQt5.QtCore import pyqtSignal,Qt
 from PyQt5.QtWidgets import QMainWindow,QApplication,QPushButton, QWidget,QFileDialog,QVBoxLayout
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QMovie
-import sys,os,ctypes,threading
+import sys,os,ctypes
 
 def restore_file(widget):
     dll_path = os.path.abspath(r'./DLLs/VirusHandle.dll')

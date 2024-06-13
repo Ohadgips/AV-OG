@@ -3,7 +3,6 @@ from WindowsMalwareDetection import PE_ML
 import sys,os,threading,time,ctypes
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
-import ctypes
 class Threat(ctypes.Structure):
     _fields_ = [("filepathname", ctypes.c_wchar_p), ("threattype", ctypes.c_char_p)]
 
@@ -186,7 +185,7 @@ if __name__ == "__main__":
     DIRNAME = os.path.dirname(os.path.abspath(__file__))
     os.chdir(DIRNAME)
     app,window = GUI_Setup.start_GUI()
-    #window.scanBtn.clicked.connect(lambda: scan_button(str(window.filePath.text()),window))
+    GUI_Setup.get_and_set_all_quarantined_files(window)
     window.scanBtn.clicked.connect(lambda: start_scan(str(window.filePath.text()),window))
 
     sys.exit(app.exec_()) 
