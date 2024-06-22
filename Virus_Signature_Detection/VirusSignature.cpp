@@ -1,8 +1,4 @@
-﻿#ifdef byte
-#undef byte
-#endif
-
-#include "VirusSignature.h"
+﻿#include "VirusSignature.h"
 #include <cstring>
 #include <windows.h>
 #include <locale>
