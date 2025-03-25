@@ -1,3 +1,2 @@
 .dll linguist-language=C++
-DLLs/Virus_Signature_Detection.dll linguist-detectable=true
 Virus_Signature_Detection/sqlite/* linguist-detectable=false
